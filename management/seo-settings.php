@@ -5,8 +5,8 @@ require_once "layouts/config.php";
 
 // Define variables and initialize with empty values
 
-$site_title_err = $site_desc_err = $site_keywords_err = $google_key_err = $yandex_key_err = $whatsapp_number = $whatsapp_number_err =
-    $facebook_url_err = $instagram_url_err  = $site_email_err = $site_phone_err = $logo_text_err = $name_prefix_err = $csfr_err = "";
+$site_title_err = $site_desc_err = $site_keywords_err = $google_key_err = $yandex_key_err = $whatsapp_number = $whatsapp_number_err = $place_id_err =
+    $facebook_url_err = $instagram_url_err  = $site_email_err = $site_phone_err = $logo_text_err = $name_prefix_err = $csfr_err = $google_api_key_err = "";
 //check if the last information is already in the database 
 $sql = "SELECT * FROM seo_settings ORDER BY id DESC LIMIT 1";
 $stmt = $pdo->prepare($sql);
@@ -19,6 +19,8 @@ if ($seo) {
     $site_keywords = $seo['keywords'];
     $google_key = $seo['google_verify'];
     $yandex_key = $seo['yandex_verify'];
+    $google_api_key = $seo['google_api_key'];
+    $place_id = $seo['place_id'];
     $whatsapp_number = $seo['whatsapp'];
     $facebook_url = $seo['facebook'];
     $instagram_url = $seo['instagram'];
@@ -27,7 +29,7 @@ if ($seo) {
     $logo_text = $seo['logo_text'];
     $name_prefix = $seo['name_prefix'];
 } else {
-    $site_title = $site_desc = $site_keywords = $google_key = $yandex_key = $facebook_url = $instagram_url = $site_email = $site_phone = $logo_text = $name_prefix = $whatsapp_number = "";
+    $site_title = $site_desc = $site_keywords = $google_key = $yandex_key = $facebook_url = $instagram_url = $site_email = $site_phone = $logo_text = $name_prefix = $whatsapp_number = $google_api_key = $place_id = "";
 }
 
 
@@ -78,6 +80,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $yandex_key_err = "Lütfen yandex key giriniz.";
         } else {
             $yandex_key = $input_yandex_key;
+        }
+
+
+        // Validate google api key
+        $input_google_api_key = sanitize_input($_POST["google_api_key"]);
+        if (empty($input_google_api_key)) {
+            $google_api_key_err = "Lütfen google api key giriniz.";
+        } else {
+            $google_api_key = $input_google_api_key;
+        }
+
+        // Validate place id
+        $input_place_id = sanitize_input($_POST["place_id"]);
+        if (empty($input_place_id)) {
+            $place_id_err = "Lütfen place id giriniz.";
+        } else {
+            $place_id = $input_place_id;
         }
 
 
@@ -140,14 +159,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         // Check input errors before inserting in database
-        if (empty($site_title_err) && empty($site_desc_err) && empty($site_keywords_err) && empty($google_key_err) && empty($yandex_key_err)  && empty($facebook_url_err) && empty($instagram_url_err) && empty($site_email_err) && empty($site_phone_err) && empty($whatsapp_number_err) && empty($logo_text_err) && empty($name_prefix_err) && empty($csfr_err)) {
-            $sql = "UPDATE seo_settings SET title=:title, description=:description, keywords=:keywords, google_verify=:google_verify, yandex_verify=:yandex_verify, facebook=:facebook, instagram=:instagram, email=:email, phone=:phone, whatsapp=:whatsapp, logo_text=:logo_text, name_prefix=:name_prefix WHERE id=:id";
+        if (empty($site_title_err) && empty($site_desc_err) && empty($site_keywords_err) && empty($google_key_err) && empty($yandex_key_err)  && empty($facebook_url_err) && empty($instagram_url_err) && empty($site_email_err) && empty($site_phone_err) && empty($whatsapp_number_err) && empty($logo_text_err) && empty($name_prefix_err) && empty($csfr_err) && empty($google_api_key_err) && empty($place_id_err)) {
+            $sql = "UPDATE seo_settings SET title=:title, description=:description, keywords=:keywords, google_verify=:google_verify, yandex_verify=:yandex_verify,google_api_key=:google_api_key,place_id=:place_id, facebook=:facebook, instagram=:instagram, email=:email, phone=:phone, whatsapp=:whatsapp, logo_text=:logo_text, name_prefix=:name_prefix WHERE id=:id";
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(':title', $site_title, PDO::PARAM_STR);
             $stmt->bindParam(':description', $site_desc, PDO::PARAM_STR);
             $stmt->bindParam(':keywords', $site_keywords, PDO::PARAM_STR);
             $stmt->bindParam(':google_verify', $google_key, PDO::PARAM_STR);
             $stmt->bindParam(':yandex_verify', $yandex_key, PDO::PARAM_STR);
+            $stmt->bindParam(':google_api_key', $google_api_key, PDO::PARAM_STR);
+            $stmt->bindParam(':place_id', $place_id, PDO::PARAM_STR);
             $stmt->bindParam(':facebook', $facebook_url, PDO::PARAM_STR);
             $stmt->bindParam(':instagram', $instagram_url, PDO::PARAM_STR);
             $stmt->bindParam(':email', $site_email, PDO::PARAM_STR);
@@ -207,6 +228,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $yandex_key = $input_yandex_key;
         }
 
+        // Validate google api key
+        $input_google_api_key = sanitize_input($_POST["google_api_key"]);
+        if (empty($input_google_api_key)) {
+            $google_api_key_err = "Lütfen google api key giriniz.";
+        } else {
+            $google_api_key = $input_google_api_key;
+        }
+
+        // Validate place id
+        $input_place_id = sanitize_input($_POST["place_id"]);
+        if (empty($input_place_id)) {
+            $place_id_err = "Lütfen place id giriniz.";
+        } else {
+            $place_id = $input_place_id;
+        }
+
 
         // Validate facebook url
         $input_facebook_url = sanitize_input($_POST["facebook_url"]);
@@ -266,15 +303,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         // Check input errors before inserting in database
-        if (empty($site_title_err) && empty($site_desc_err) && empty($site_keywords_err) && empty($google_key_err) && empty($yandex_key_err) && empty($facebook_url_err) && empty($instagram_url_err) && empty($site_email_err) && empty($site_phone_err) && empty($whatsapp_number_err) && empty($logo_text_err) && empty($name_prefix_err) && empty($csfr_err)) {
+        if (empty($site_title_err) && empty($site_desc_err) && empty($site_keywords_err) && empty($google_key_err) && empty($yandex_key_err) && empty($facebook_url_err) && empty($instagram_url_err) && empty($site_email_err) && empty($site_phone_err) && empty($whatsapp_number_err) && empty($logo_text_err) && empty($name_prefix_err) && empty($csfr_err) && empty($google_api_key_err) && empty($place_id_err)) {
             // Prepare an insert statement
-            $sql = "INSERT INTO seo_settings ( `title`, `description`, `keywords`, `google_verify`, `yandex_verify`, `logo_text`, `email`, `phone`,`whatsapp`, `facebook`, `instagram`, `name_prefix`) VALUES (:title, :description, :keywords, :google_verify, :yandex_verify, :logo_text, :email, :phone, :whatsapp, :facebook, :instagram, :name_prefix)";
+            $sql = "INSERT INTO seo_settings ( `title`, `description`, `keywords`, `google_verify`, `yandex_verify`,`google_api_key`,`place_id`, `logo_text`, `email`, `phone`,`whatsapp`, `facebook`, `instagram`, `name_prefix`) VALUES (:title, :description, :keywords, :google_verify, :yandex_verify,:google_api_key,:place_id, :logo_text, :email, :phone, :whatsapp, :facebook, :instagram, :name_prefix)";
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(':title', $site_title, PDO::PARAM_STR);
             $stmt->bindParam(':description', $site_desc, PDO::PARAM_STR);
             $stmt->bindParam(':keywords', $site_keywords, PDO::PARAM_STR);
             $stmt->bindParam(':google_verify', $google_key, PDO::PARAM_STR);
             $stmt->bindParam(':yandex_verify', $yandex_key, PDO::PARAM_STR);
+            $stmt->bindParam(':google_api_key', $google_api_key, PDO::PARAM_STR);
+            $stmt->bindParam(':place_id', $place_id, PDO::PARAM_STR);
             $stmt->bindParam(':logo_text', $logo_text, PDO::PARAM_STR);
             $stmt->bindParam(':email', $site_email, PDO::PARAM_STR);
             $stmt->bindParam(':phone', $site_phone, PDO::PARAM_STR);
@@ -387,6 +426,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                             <label for="yandex_key" class="form-label">Yandex Site Verification Key</label>
                                             <input type="text" class="form-control" id="yandex_key" name="yandex_key" placeholder="Yandex site verification key giriniz" value="<?php echo $yandex_key; ?>">
                                             <span class="text-danger"><?php echo $yandex_key_err; ?></span>
+                                        </div>
+
+                                        <div class="mb-3 <?php echo (!empty($google_api_key_err)) ? 'has-error' : ''; ?>">
+                                            <label for="google_api_key" class="form-label">Google API KEY</label>
+                                            <input type="text" class="form-control" id="google_api_key" name="google_api_key" placeholder="Google API KEY" value="<?php echo $google_api_key; ?>">
+                                            <span class="text-danger"><?php echo $google_api_key_err; ?></span>
+                                        </div>
+
+                                        <div class="mb-3 <?php echo (!empty($place_id_err)) ? 'has-error' : ''; ?>">
+                                            <label for="place_id" class="form-label">Place ID</label>
+                                            <input type="text" class="form-control" id="place_id" name="place_id" placeholder="Place ID" value="<?php echo $place_id; ?>">
+                                            <span class="text-danger"><?php echo $place_id_err; ?></span>
                                         </div>
 
 

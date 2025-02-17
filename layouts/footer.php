@@ -103,7 +103,7 @@
                                             <p>İletişim</p>
                                         </a>
                                     </li>
-                                    
+
                                 </ul>
                             </div>
                         </div>
@@ -134,7 +134,7 @@
                                     <li>Pazar günleri kapalı!</li>
                                 </ul>
                                 <div class="site-footer-four__btn-box">
-                                    <a href="contact.html" class="thm-btn">Contact Us<span class="icon-arrow-up-right"></span></a>
+                                    <a href="iletisim" class="thm-btn">İleitişime Geç<span class="icon-arrow-up-right"></span></a>
                                 </div>
                             </div>
                         </div>
@@ -149,15 +149,15 @@
                         <div class="site-footer__bottom-inner">
                             <div class="site-footer__copyright">
                                 <p class="site-footer__copyright-text">
-                                    Copyright ©2025 <a href="index.html">Crank</a>. All
-                                    rights reserved.
+                                    &copy; Copyrights <script>
+                                        document.write(new Date().getFullYear())
+                                    </script> Menekşe Lastik
                                 </p>
                             </div>
                             <div class="site-footer__bottom-menu-box">
                                 <ul class="list-unstyled site-footer__bottom-menu">
-                                    <li><a href="about.html">Trems & Condition</a></li>
-                                    <li><a href="about.html">Privacy Policy</a></li>
-                                    <li><a href="about.html">Contact Us</a></li>
+                                    <li><a href="about.html"> KVKK Politikası</a></li>
+                                    <li><a href="about.html">Çerez Politikası</a></li>
                                 </ul>
                             </div>
                         </div>

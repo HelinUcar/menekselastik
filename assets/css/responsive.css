@@ -2844,9 +2844,7 @@
         display: none;
     }
 
-    .main-menu-three__wrapper-inner .main-menu__nav-sidebar-icon {
-        display: none;
-    }
+   
 
 
     .main-menu-four .mobile-nav__toggler:hover {
@@ -2857,7 +2855,7 @@
         padding: 0px 15px 0px;
     }
 
-    .main-menu-four__right .main-menu-four__btn-box, .main-menu-four__right .main-menu__nav-sidebar-icon {
+    .main-menu-four__right .main-menu-four__btn-box {
         display: none;
     }
 

@@ -46,7 +46,7 @@ echo !defined("Secure-MENEKSELASTIK-2025@!") ? die("Hatalı sayfa girişi yaptı
                         <h2>Hizmetlerimiz</h2>
                         <div class="thm-breadcrumb__box">
                             <ul class="thm-breadcrumb list-unstyled">
-                                <li><a href="index.html">Hakkımızda</a></li>
+                                <li>Kurumsal</li>
                                 <li><span class="icon-angle-right"></span></li>
                                 <li>Hizmetlerimiz</li>
                             </ul>
