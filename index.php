@@ -95,33 +95,9 @@ header("Expires: 0");
     <!-- template styles -->
     <link rel="stylesheet" href="assets/css/style.css" />
     <link rel="stylesheet" href="assets/css/responsive.css" />
-    <script src="cookie/cookieconsent.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.6.172/pdf.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.6.172/pdf.worker.min.js"></script>
-    <script>
-        window.addEventListener('load', function() {
-            window.cookieconsent.initialise({
-                revokeBtn: "<div class='cc-revoke'></div>",
-                type: "opt-in",
-                position: "bottom",
-                palette: {
-                    popup: {
-                        background: "#1d4d89;",
-                        text: "#fff"
-                    },
-                    button: {
-                        background: "#ff8c00",
-                        text: "#fff"
-                    }
-                },
-                content: {
-                    message: "Çerez tercihlerinizi değiştirmek ve Çerezler hakkında detaylı bilgi almak için Çerez Politikasını inceleyebilirsiniz.",
-                    link: "Çerez Politikası",
-                    href: "cerez-politikasi"
-                }
-            })
-        });
-    </script>
+    
     <?php
     if ($_GET && !empty($_GET["p"])) {
         $p = htmlspecialchars(trim($_GET["p"] . ".php"));

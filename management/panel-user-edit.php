@@ -13,8 +13,8 @@ if (isset($_GET['id'])) {
 }
 
 // Define variables and initialize with empty values
-$useremail = $username = $usersurname =  $password = $confirm_password = "";
-$useremail_err = $username_err = $usersurname_err = $password_err = $confirm_password_err = $crsf_err = "";
+$useremail = $username = $usersurname =  $password = $confirm_password = $role_id = "";
+$useremail_err = $username_err = $usersurname_err = $password_err = $confirm_password_err = $crsf_err = $role_err = $error = "";
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -27,6 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $useremail = empty(trim($_POST["useremail"])) ? $useremail_err = "Bir e-posta adresi giriniz." : sanitize_input($_POST["useremail"]);
     $username = empty(trim($_POST["username"])) ? $username_err = "Bir ad giriniz." : sanitize_input($_POST["username"]);
     $usersurname = empty(trim($_POST["usersurname"])) ? $usersurname_err = "Bir soyad giriniz." : sanitize_input($_POST["usersurname"]);
+    $role_id = empty(trim($_POST["role_id"])) ? $role_err = "Bir rol seçiniz." : sanitize_input($_POST["role_id"]);
 
     if (!empty(trim($_POST["password"]))) {
         if (!preg_match("/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/", $_POST["password"])) {
@@ -43,19 +44,56 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
+    $userphoto = $user['userphoto']; // Eskiyi varsay
+    $oldPhoto = $user['userphoto'];
+
+    if (isset($_FILES['userphoto']) && $_FILES['userphoto']['error'] === UPLOAD_ERR_OK) {
+        $fileTmpPath = $_FILES['userphoto']['tmp_name'];
+        $fileName = $_FILES['userphoto']['name'];
+        $fileExt = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+        $allowedExts = ['jpg', 'jpeg', 'png', 'gif'];
+
+        if (in_array($fileExt, $allowedExts)) {
+            $newFileName = uniqid('user_', true) . '.' . $fileExt;
+            $uploadDir = 'uploads/users/';
+            $destPath = $uploadDir . $newFileName;
+
+            if (!is_dir($uploadDir)) {
+                mkdir($uploadDir, 0755, true);
+            }
+
+            if (move_uploaded_file($fileTmpPath, $destPath)) {
+                // Eski fotoğraf varsa sil
+                if (!empty($oldPhoto) && file_exists($oldPhoto)) {
+                    unlink($oldPhoto);
+                }
+                $userphoto = $destPath;
+            } else {
+                $error = "Yeni fotoğraf yüklenemedi.";
+            }
+        } else {
+            $error = "Geçersiz dosya türü.";
+        }
+    }
+
+
     if (empty($useremail_err) && empty($username_err) && empty($usersurname_err) && empty($password_err) && empty($confirm_password_err) && empty($crsf_err)) {
+
+
         if (!empty($password)) {
-            $sql = "UPDATE users SET useremail = :useremail, username = :username, usersurname = :usersurname, password = :password WHERE id = :id";
+            $sql = "UPDATE users SET useremail = :useremail, username = :username, usersurname = :usersurname, password = :password, userphoto = :userphoto, role_id = :role_id WHERE id = :id";
             $stmt = $pdo->prepare($sql);
             $param_password = password_hash($password, PASSWORD_ARGON2ID);
             $stmt->bindParam(':password', $param_password, PDO::PARAM_STR);
         } else {
-            $sql = "UPDATE users SET useremail = :useremail, username = :username, usersurname = :usersurname WHERE id = :id";
+            $sql = "UPDATE users SET useremail = :useremail, username = :username, usersurname = :usersurname, userphoto = :userphoto, role_id = :role_id WHERE id = :id";
             $stmt = $pdo->prepare($sql);
         }
         $stmt->bindParam(':useremail', $useremail, PDO::PARAM_STR);
         $stmt->bindParam(':username', $username, PDO::PARAM_STR);
         $stmt->bindParam(':usersurname', $usersurname, PDO::PARAM_STR);
+        $stmt->bindParam(':role_id', $role_id, PDO::PARAM_INT);
+        $stmt->bindParam(':userphoto', $userphoto, PDO::PARAM_STR);
         $stmt->bindParam(':id', $user_id, PDO::PARAM_INT);
 
         if ($stmt->execute()) {
@@ -118,10 +156,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <h4 class="card-title"><?php echo ucfirst($user["username"] . ' ' . $user["usersurname"]); ?> Üyeyi Düzenle</h4>
                                 <p class="card-title-desc">Buradan oluşturduğunuz üyeler sadece yönetim paneline erişim sağlayabilir.</p>
 
-                                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
 
                                     <input type="hidden" name="user_id" value="<?php echo $user["id"]; ?>">
                                     <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+
+                                    <div class="mb-3">
+                                        <label for="userphoto" class="form-label">Profil Resmi</label><br>
+                                        <?php
+                                        $imgSrc = !empty($user['userphoto']) ? $user['userphoto'] : 'assets/images/users/no-user.png';
+                                        ?>
+                                        <img src="<?php echo $imgSrc; ?>" alt="Profil Resmi" width="80" height="80" class="rounded-circle mb-2"><br>
+                                        <input type="file" class="form-control" id="userphoto" name="userphoto">
+                                        <span class="text-muted"> * Yüklemezseniz mevcut fotoğraf kalır.</span>
+                                    </div>
+
 
                                     <div class="mb-3 <?php echo (!empty($useremail_err)) ? 'has-error' : ''; ?>">
                                         <label for="useremail" class="form-label">E-Posta</label>
@@ -139,6 +188,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         <input type="text" class="form-control" id="usersurname" name="usersurname" placeholder="Soyad giriniz" value="<?php echo $user["usersurname"]; ?>">
                                         <span class="text-danger"><?php echo $usersurname_err; ?></span>
                                     </div>
+
+                                    <div class="mb-3 <?php echo (!empty($role_err)) ? 'has-error' : ''; ?>">
+                                        <label for="role" class="form-label">Rol</label>
+                                        <select class="form-select" id="role" name="role_id">
+                                            <option value="">Seçiniz</option>
+                                            <?php
+                                            $get_roles = "SELECT * FROM roles";
+                                            $stmt_roles = $pdo->prepare($get_roles);
+                                            $stmt_roles->execute();
+                                            $roles = $stmt_roles->fetchAll(PDO::FETCH_ASSOC);
+
+                                            foreach ($roles as $role) {
+                                                $selected = ($user['role_id'] == $role['role_id']) ? 'selected' : '';
+                                                echo '<option value="' . $role['role_id'] . '" ' . $selected . '>' . ucfirst(htmlspecialchars($role['role_name'])) . '</option>';
+                                            }
+                                            ?>
+                                        </select>
+                                        <span class="text-danger"><?php echo $role_err ?? ''; ?></span>
+                                    </div>
+
 
                                     <div class="mb-3 <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
                                         <label for="userpassword" class="form-label">Şifre</label>

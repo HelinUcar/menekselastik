@@ -5,10 +5,10 @@
             <div class="navbar-brand-box">
                 <a href="index.php" class="logo logo-light">
                     <span class="logo-sm">
-                        <img src="../images/logo/logo-video.png" alt="" height="20">
+                        <img src="assets/images/favicon.png" alt="" height="30">
                     </span>
                     <span class="logo-lg">
-                        <img src="../images/logo/logo-video.png" alt="" height="60">
+                        <img src="assets/images/logo-1.png" alt="" height="35">
                     </span>
                 </a>
             </div>
@@ -75,10 +75,81 @@
 
 
                 <li>
+                    <a href="home-page.php" class="waves-effect">
+                        <i class="bx bx-home-circle"></i>
+                        <span key="t-home-page">Anasayfa Ayarları</span>
+                    </a>
+                </li>
+
+                <li>
                     <a href="seo-settings.php" class="waves-effect">
                         <i class="bx bx-cog"></i>
                         <span key="t-seo-settings">Seo Ayarları</span>
                     </a>
+                </li>
+
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="bx bx-news"></i>
+                        <span key="t-news">Haberler</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="news-add.php" key="t-news-add">Haber Ekle</a></li>
+                        <li><a href="news.php" key="t-news">Haberler</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="bx bx-aperture"></i>
+                        <span key="t-tires">Lastikler</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="tires-add.php" key="t-tires-add">Lastik Ekle</a></li>
+                        <li><a href="tires.php" key="t-tires">Lastik Listesi</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="bx bx-aperture"></i>
+                        <span key="t-rims">Jantlar</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="rims-add.php" key="t-rims-add">Jant Ekle</a></li>
+                        <li><a href="rims.php" key="t-rims">Jantlar</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="mdi mdi-car-battery"></i>
+                        <span key="t-batteries">Aküler</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="batteries-add.php" key="t-batteries-add">Akü Ekle</a></li>
+                        <li><a href="batteries.php" key="t-batteries">Aküler</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="bx bx-broadcast"></i>
+                        <span key="t-sensors">Sensörler</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="sensors-add.php" key="t-sensors-add">Sensör Ekle</a></li>
+                        <li><a href="sensors.php" key="t-sensors">Sensörler</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="mdi mdi-newspaper-variant-multiple"></i>
+                        <span key="t-ads">İlanlar</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="ads-add.php" key="t-ads-add">İlan Ekle</a></li>
+                        <li><a href="ads.php" key="t-ads">İlanlar</a></li>
+                    </ul>
                 </li>
 
 
@@ -113,7 +184,7 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="service-add.php" key="t-service-add">Servis Ekle</a></li>
-                        <li><a href="service.php" key="t-service">Servisler</a></li>
+                        <li><a href="services.php" key="t-service">Servisler</a></li>
                     </ul>
                 </li>
 

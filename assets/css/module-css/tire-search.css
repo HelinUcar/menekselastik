@@ -32,7 +32,7 @@
 }
 
 .c-select-wrap:before {
-  content: url("/Assets/images/svg/arrow_down.svg");
+  content: url("../assets/images/svg/arrow_down.svg");
   position: absolute;
   top: 5px;
   right: -13px;

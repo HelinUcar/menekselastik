@@ -9,6 +9,7 @@ echo !defined("Secure-MENEKSELASTIK-2025@!") ? die("Hatalı sayfa girişi yaptı
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
 <link rel="stylesheet" href="assets/css/module-css/tire-search.css" />
+
 </head>
 
 
@@ -25,11 +26,14 @@ echo !defined("Secure-MENEKSELASTIK-2025@!") ? die("Hatalı sayfa girişi yaptı
 
         <div class="stricky-header stricked-menu main-menu main-menu-four">
             <div class="sticky-header__content"></div>
-            <!-- /.sticky-header__content -->
-        </div>
-        <!-- /.stricky-header -->
 
-        <!-- Banner One Start -->
+        </div>
+
+        <?php
+        $get_home_page = $pdo->prepare("SELECT * FROM home_page WHERE id=?");
+        $get_home_page->execute([1]);
+        $home_page = $get_home_page->fetch(PDO::FETCH_ASSOC);
+        ?>
         <section class="banner-one">
             <div class="container">
                 <div class="banner-one__inner">
@@ -42,7 +46,7 @@ echo !defined("Secure-MENEKSELASTIK-2025@!") ? die("Hatalı sayfa girişi yaptı
                         <div class="banner-one__video-box">
                             <div class="banner-one__video-link">
                                 <a
-                                    href="https://www.youtube.com/watch?v=Get7rqXYrbQ"
+                                    href="<?= $home_page['main_video']; ?>"
                                     class="video-popup">
                                     <div class="banner-one__video-icon">
                                         <span class="icon-video"></span>
@@ -72,13 +76,13 @@ echo !defined("Secure-MENEKSELASTIK-2025@!") ? die("Hatalı sayfa girişi yaptı
                 </div>
             </div>
         </section>
-        <!--Banner One End -->
 
-        <!--Sliding Text Two Start-->
-        <section class="sliding-text sliding-text-two">
-            <!--Sliding Text Two End-->
+       
+
+        <!-- <section class="sliding-text sliding-text-two">
+          
             <div class="container c-container-mobile">
-                <!-- Arama Motoru -->
+            
                 <section class="tyre-search-engine">
                     <form action="#" method="post" id="tyreSearchForm">
                         <ul class="tyre-search__radios">
@@ -369,13 +373,13 @@ echo !defined("Secure-MENEKSELASTIK-2025@!") ? die("Hatalı sayfa girişi yaptı
                             </div>
                             <div class="tyre-search-inputs">
                                 <div class="row tyre-search-select tyre-search-select--size tyre-search-select--active" id="tyreSearchSizeContent">
-                                    <!-- <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                                   <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
                                         <img src="assets/images/tyre-info.png" alt="Teker Ebat Bilgisi" class="img-responsive tyre-search-size-image lazyload" style="width: 170px;" />
                                         <img src="assets/images/tyre-info-big.png" alt="Teker Ebat Bilgisi" class="img-responsive tyre-search-size-image-big lazyload" />
-                                    </div> -->
+                                    </div>
 
                                     <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                                        <!-- widthBySize -->
+                                      
                                         <div class="c-select-wrap">
                                             <select name="widthBySize" id="widthBySize" class="c-select">
                                                 <option>GENİŞLİK</option>
@@ -384,7 +388,7 @@ echo !defined("Secure-MENEKSELASTIK-2025@!") ? die("Hatalı sayfa girişi yaptı
                                     </div>
 
                                     <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                                        <!-- heightBySize -->
+                                        
                                         <div class="c-select-wrap">
                                             <select name="heightBySize" id="heightBySize" class="c-select">
                                                 <option>YÜKSEKLİK</option>
@@ -393,7 +397,7 @@ echo !defined("Secure-MENEKSELASTIK-2025@!") ? die("Hatalı sayfa girişi yaptı
                                     </div>
 
                                     <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                                        <!-- rimDiameterBySize -->
+                                       
                                         <div class="c-select-wrap">
                                             <select name="rimDiameterBySize" id="rimDiameterBySize" class="c-select">
                                                 <option>JANT ÇAPI</option>
@@ -405,7 +409,7 @@ echo !defined("Secure-MENEKSELASTIK-2025@!") ? die("Hatalı sayfa girişi yaptı
 
                                 <div class="row tyre-search-select" id="tyreSearchCarContent">
                                     <div class="col-xs-6 col-lg-3">
-                                        <!-- brandByCar -->
+                                       
                                         <div class="c-select-wrap">
                                             <select name="brandByCar" id="brandByCar"
                                                 class="c-select car-required">
@@ -414,7 +418,7 @@ echo !defined("Secure-MENEKSELASTIK-2025@!") ? die("Hatalı sayfa girişi yaptı
                                         </div>
                                     </div>
                                     <div class="col-xs-6 col-lg-3">
-                                        <!-- modelByCar -->
+                                       
                                         <div class="c-select-wrap">
                                             <select name="modelByCar" id="modelByCar"
                                                 class="c-select car-required">
@@ -423,7 +427,7 @@ echo !defined("Secure-MENEKSELASTIK-2025@!") ? die("Hatalı sayfa girişi yaptı
                                         </div>
                                     </div>
                                     <div class="col-xs-6 col-lg-3">
-                                        <!-- yearByCar -->
+                                        
                                         <div class="c-select-wrap">
                                             <select name="yearByCar" id="yearByCar"
                                                 class="c-select">
@@ -432,7 +436,7 @@ echo !defined("Secure-MENEKSELASTIK-2025@!") ? die("Hatalı sayfa girişi yaptı
                                         </div>
                                     </div>
                                     <div class="col-xs-6 col-lg-3">
-                                        <!-- motorByCar -->
+                                       
                                         <div class="c-select-wrap">
                                             <select name="motorByCar" id="motorByCar" class="c-select">
                                                 <option selected disabled>MOTOR</option>
@@ -458,7 +462,7 @@ echo !defined("Secure-MENEKSELASTIK-2025@!") ? die("Hatalı sayfa girişi yaptı
                 </section>
             </div>
 
-        </section>
+        </section> -->
 
 
 
@@ -528,7 +532,7 @@ echo !defined("Secure-MENEKSELASTIK-2025@!") ? die("Hatalı sayfa girişi yaptı
                         <div class="about-four__left">
                             <div class="about-four__img">
                                 <img
-                                    src="assets/images/resources/about-four-img-1.jpg"
+                                    src="assets/images/menekse_lastik.png"
                                     alt="" />
                             </div>
                         </div>
@@ -542,12 +546,12 @@ echo !defined("Secure-MENEKSELASTIK-2025@!") ? die("Hatalı sayfa girişi yaptı
                                     <div class="section-title-two__tagline-shape-1"></div>
                                 </div>
                                 <h2 class="section-title-two__title title-animation">
-                                    Menekşe Lastik: Güvenli Sürüş İçin Profesyonel Hizmet
+                                    <?= $home_page['about_title'] ?>
                                 </h2>
                             </div>
-                            <p class="about-four__text">
-                                Lastik ve jant çözümlerinde yılların deneyimiyle, aracınızın yol tutuşunu ve güvenliğini en üst seviyeye çıkarıyoruz. Lastik değişimi, balans ayarı, jant düzeltme ve tamir hizmetlerimizle her zaman yanınızdayız.Lastik ve jant çözümlerinde yılların deneyimiyle, aracınızın yol tutuşunu ve güvenliğini en üst seviyeye çıkarıyoruz. Lastik değişimi, balans ayarı, jant düzeltme ve tamir hizmetlerimizle her zaman yanınızdayız.
-                            </p>
+
+                            <?= $home_page['about_content'] ?>
+
                             <div
                                 class="about-four__points-box wow slideInRight"
                                 data-wow-delay="100ms"
@@ -718,16 +722,7 @@ echo !defined("Secure-MENEKSELASTIK-2025@!") ? die("Hatalı sayfa girişi yaptı
                         <div class="cta-one__btn">
                             <a href="iletisim" class="thm-btn">İletişime Geç<span class="icon-arrow-up-right"></span></a>
                         </div>
-                        <div class="cta-one__video-link">
-                            <a
-                                href="https://www.youtube.com/watch?v=Get7rqXYrbQ"
-                                class="video-popup">
-                                <div class="cta-one__video-icon">
-                                    <span class="icon-video"></span>
-                                    <i class="ripple"></i>
-                                </div>
-                            </a>
-                        </div>
+
                     </div>
                 </div>
             </div>
@@ -859,6 +854,8 @@ echo !defined("Secure-MENEKSELASTIK-2025@!") ? die("Hatalı sayfa girişi yaptı
         </section>
         <!--Gallery Four End -->
 
+
+
         <!--Testimonial Three Start -->
         <section class="testimonial-three">
             <div class="testimonial-three__inner">
@@ -873,165 +870,79 @@ echo !defined("Secure-MENEKSELASTIK-2025@!") ? die("Hatalı sayfa girişi yaptı
                             Müşteri Memnuniyeti
                         </h2>
                     </div>
-                    <div class="testimonial-three__carousel owl-theme owl-carousel">
+                    <div class="testimonial-three__carousel owl-theme owl-carousel" id="testimonials">
 
-                        <!--Testimonial Three Single Start -->
-                        <div class="item">
-                            <div class="testimonial-three__single">
-                                <div class="testimonial-three__quote-and-ratting">
-                                    <div class="testimonial-three__quote">
-                                        <span class="fal fa-quote-right"></span>
-                                    </div>
-                                    <div class="testimonial-three__ratting">
-                                        <span class="icon-star"></span>
-                                        <span class="icon-star"></span>
-                                        <span class="icon-star"></span>
-                                        <span class="icon-star"></span>
-                                        <span class="last-icon icon-star"></span>
-                                    </div>
-                                </div>
-                                <p class="testimonial-three__text">
-                                    Car service the maintaining and a the performance longevity
-                                    of the vehicle a From oil is a and tire are rotations Car
-                                    service
-                                </p>
-                                <div class="testimonial-three__client-box">
-                                    <div class="testimonial-three__client-img">
-                                        <img
-                                            src="assets/images/testimonial/testimonial-3-1.jpg"
-                                            alt="" />
-                                    </div>
-                                    <div class="testimonial-three__client-content">
-                                        <h4><a href="testimonials.html">Arlene McCoy</a></h4>
-                                        <p>Nursing Assistant</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--Testimonial Three Single End -->
-                        <!--Testimonial Three Single Start -->
-                        <div class="item">
-                            <div class="testimonial-three__single">
-                                <div class="testimonial-three__quote-and-ratting">
-                                    <div class="testimonial-three__quote">
-                                        <span class="fal fa-quote-right"></span>
-                                    </div>
-                                    <div class="testimonial-three__ratting">
-                                        <span class="icon-star"></span>
-                                        <span class="icon-star"></span>
-                                        <span class="icon-star"></span>
-                                        <span class="icon-star"></span>
-                                        <span class="last-icon icon-star"></span>
-                                    </div>
-                                </div>
-                                <p class="testimonial-three__text">
-                                    Car service the maintaining and a the performance longevity
-                                    of the vehicle a From oil is a and tire are rotations Car
-                                    service
-                                </p>
-                                <div class="testimonial-three__client-box">
-                                    <div class="testimonial-three__client-img">
-                                        <img
-                                            src="assets/images/testimonial/testimonial-3-2.jpg"
-                                            alt="" />
-                                    </div>
-                                    <div class="testimonial-three__client-content">
-                                        <h4><a href="testimonials.html">Susan Pual</a></h4>
-                                        <p>Nursing Assistant</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--Testimonial Three Single End -->
-                        <!--Testimonial Three Single Start -->
-                        <div class="item">
-                            <div class="testimonial-three__single">
-                                <div class="testimonial-three__quote-and-ratting">
-                                    <div class="testimonial-three__quote">
-                                        <span class="fal fa-quote-right"></span>
-                                    </div>
-                                    <div class="testimonial-three__ratting">
-                                        <span class="icon-star"></span>
-                                        <span class="icon-star"></span>
-                                        <span class="icon-star"></span>
-                                        <span class="icon-star"></span>
-                                        <span class="last-icon icon-star"></span>
-                                    </div>
-                                </div>
-                                <p class="testimonial-three__text">
-                                    Car service the maintaining and a the performance longevity
-                                    of the vehicle a From oil is a and tire are rotations Car
-                                    service
-                                </p>
-                                <div class="testimonial-three__client-box">
-                                    <div class="testimonial-three__client-img">
-                                        <img
-                                            src="assets/images/testimonial/testimonial-3-3.jpg"
-                                            alt="" />
-                                    </div>
-                                    <div class="testimonial-three__client-content">
-                                        <h4><a href="testimonials.html">Robert Spin</a></h4>
-                                        <p>Nursing Assistant</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--Testimonial Three Single End -->
-                        <!--Testimonial Three Single Start -->
-                        <div class="item">
-                            <div class="testimonial-three__single">
-                                <div class="testimonial-three__quote-and-ratting">
-                                    <div class="testimonial-three__quote">
-                                        <span class="fal fa-quote-right"></span>
-                                    </div>
-                                    <div class="testimonial-three__ratting">
-                                        <span class="icon-star"></span>
-                                        <span class="icon-star"></span>
-                                        <span class="icon-star"></span>
-                                        <span class="icon-star"></span>
-                                        <span class="last-icon icon-star"></span>
-                                    </div>
-                                </div>
-                                <p class="testimonial-three__text">
-                                    Car service the maintaining and a the performance longevity
-                                    of the vehicle a From oil is a and tire are rotations Car
-                                    service
-                                </p>
-                                <div class="testimonial-three__client-box">
-                                    <div class="testimonial-three__client-img">
-                                        <img
-                                            src="assets/images/testimonial/testimonial-3-1.jpg"
-                                            alt="" />
-                                    </div>
-                                    <div class="testimonial-three__client-content">
-                                        <h4><a href="testimonials.html">Adam Smith</a></h4>
-                                        <p>Nursing Assistant</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--Testimonial Three Single End -->
+                        <?php
+                        $api_key = $seo_settings_arr['google_api_key'];
+                        $place_id = $seo_settings_arr['place_id'];
 
-                        <script>
-                            //get google comments with api
-                            $(document).ready(function() {
-                                $.ajax({
-                                    url:'engine/getComments.php?action=get_comments',
-                                    method:'GET',
-                                    success:function(data){
-                                        var comments = JSON.parse(data);
-                                        comments.forEach(comment => {
-                                            var html = '<div class="item"><div class="testimonial-three__single"><div class="testimonial-three__quote-and-ratting"><div class="testimonial-three__quote"><span class="fal fa-quote-right"></span></div><div class="testimonial-three__ratting"><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="last-icon icon-star"></span></div></div><p class="testimonial-three__text">'+comment.comment+'</p><div class="testimonial-three__client-box"><div class="testimonial-three__client-img"><img src="assets/images/testimonial/testimonial-3-1.jpg" alt="" /></div><div class="testimonial-three__client-content"><h4><a href="testimonials.html">'+comment.name+'</a></h4><p>'+comment.job+'</p></div></div></div></div>';
-                                            $('.testimonial-three__carousel').append(html);
-                                        });
-                                    }
-                                });
-                            });
+                        // Google Places API URL'si (Yorumlar + Kullanıcı Fotoğrafları)
+                        $url = "https://maps.googleapis.com/maps/api/place/details/json?place_id=$place_id&fields=name,rating,reviews&language=tr&key=$api_key";
+                        // API'den veri çek
+                        $ch = curl_init();
+                        curl_setopt($ch, CURLOPT_URL, $url);
+                        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                        $res = curl_exec($ch);
+                        curl_close($ch);
 
-                                    
-                        </script>
-                        
+                        // JSON verisini diziye çevir
+                        $data = json_decode($res, true);
+
+                        // Yorumları listele
+                        if (isset($data['result']['reviews'])) {
+                            foreach ($data['result']['reviews'] as $review) {
+                                $name = $review['author_name'];
+                                $profile_photo_url = $review['profile_photo_url'];
+                                $rating = $review['rating'];
+                                $text = $review['text'];
+                                $time = $review['relative_time_description'];
+                        ?>
+
+                                <!--Testimonial Three Single Start -->
+                                <div class="item">
+                                    <div class="testimonial-three__single">
+                                        <div class="testimonial-three__quote-and-ratting">
+                                            <div class="testimonial-three__quote">
+                                                <span class="fal fa-quote-right"></span>
+                                            </div>
+                                            <div class="testimonial-three__ratting">
+                                                <span class="icon-star"></span>
+                                                <span class="icon-star"></span>
+                                                <span class="icon-star"></span>
+                                                <span class="icon-star"></span>
+                                                <span class="last-icon icon-star"></span>
+                                            </div>
+                                        </div>
+                                        <p class="testimonial-three__text">
+                                            <?php echo $text; ?>
+                                        </p>
+                                        <div class="testimonial-three__client-box">
+                                            <div class="testimonial-three__client-img">
+                                                <img
+                                                    src="<?php echo $profile_photo_url; ?>"
+                                                    alt="" />
+                                            </div>
+                                            <div class="testimonial-three__client-content">
+                                                <h4><a href="testimonials.html"><?php echo $name; ?></a></h4>
+                                                <p><?php echo $time; ?></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--Testimonial Three Single End -->
+
+                        <?php
+                            }
+                        }
+                        ?>
+
+
+
                     </div>
+
+
+
+
                 </div>
             </div>
         </section>

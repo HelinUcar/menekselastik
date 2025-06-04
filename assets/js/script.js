@@ -12,13 +12,6 @@
   });
 
 
-
-
-
-
-
-
-
   //Main Slider 
   if ($(".main-slider__carousel").length) {
     $(".main-slider__carousel").owlCarousel({
@@ -51,9 +44,6 @@
       },
     });
   }
-
-
-
 
   //Main Slider Two 
   if ($(".main-slider-two__carousel").length) {
@@ -88,9 +78,6 @@
     });
   }
 
-
-
-
   //Main Slider Three 
   if ($(".main-slider-three__carousel").length) {
     $(".main-slider-three__carousel").owlCarousel({
@@ -123,13 +110,6 @@
       },
     });
   }
-
-
-
-
-
-
-
 
   //Brand One Carousel
   if ($(".brand-one__carousel").length) {
@@ -165,8 +145,6 @@
     });
   }
 
-
-
   //Testimonial One Carousel
   if ($(".testimonial-one__carousel").length) {
     $(".testimonial-one__carousel").owlCarousel({
@@ -200,11 +178,6 @@
       },
     });
   }
-
-
-
-
-
 
   //Pricing Two Carousel
   if ($(".pricing-two__carousel").length) {
@@ -240,7 +213,6 @@
     });
   }
 
-
   //Brand Two Carousel
   if ($(".brand-two__carousel").length) {
     $(".brand-two__carousel").owlCarousel({
@@ -274,8 +246,6 @@
       },
     });
   }
-
-
 
   //Testimonial Two Carousel
   if ($(".testimonial-two__carousel").length) {
@@ -311,8 +281,6 @@
     });
   }
 
-
-
   //Gallery Two Carousel
   if ($(".gallery-two__carousel").length) {
     $(".gallery-two__carousel").owlCarousel({
@@ -346,8 +314,6 @@
       },
     });
   }
-
-
 
   //Testimonial Three Carousel
   if ($(".testimonial-three__carousel").length) {
@@ -383,12 +349,6 @@
     });
   }
 
-
-
-
-
-
-
   //Testimonial Three Carousel
   if ($(".testimonial-four__carousel").length) {
     $(".testimonial-four__carousel").owlCarousel({
@@ -422,8 +382,6 @@
       },
     });
   }
-
-
 
   //Blog Page Carousel
   if ($(".blog-carousel-style").length) {
@@ -459,11 +417,6 @@
     });
   }
 
-
-
-
-
-
   //Services Page Carousel
   if ($(".services-carousel-style").length) {
     $(".services-carousel-style").owlCarousel({
@@ -497,11 +450,6 @@
       },
     });
   }
-
-
-
-
-
 
   //Team Page Carousel
   if ($(".team-carousel-style").length) {
@@ -537,8 +485,6 @@
     });
   }
 
-
-
   //Testimonial Page Carousel
   if ($(".testimonial-carousel-style").length) {
     $(".testimonial-carousel-style").owlCarousel({
@@ -572,9 +518,6 @@
       },
     });
   }
-
-
-
 
   //Team Page Carousel
   if ($(".pricing-carousel-style").length) {
@@ -610,21 +553,9 @@
     });
   }
 
-
-
-
-
-
-
-
-
-
-
   if ($("#datepicker").length) {
     $("#datepicker").datepicker();
   }
-
-
 
   //Pricing Two Tab Tabs
   if ($('.pricing-two-tab').length) {
@@ -643,8 +574,6 @@
     });
   }
 
-
-
   //Gallery Two Tab Tabs
   if ($('.gallery-two-tabs-box').length) {
     $('.gallery-two-tabs-box .gallery-two-tab-btns .p-tab-btn').on('click', function (e) {
@@ -661,8 +590,6 @@
       }
     });
   }
-
-
 
   // Hover Image
   const link = document.querySelectorAll(".hover-item");
@@ -685,11 +612,6 @@
       linkImages[i].style.transform = "scale(0.8, 0.8)";
     });
   }
-
-
-
-
-
 
 
   // custom coursor
@@ -1471,18 +1393,6 @@
       });
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
     if ($(".marquee_mode-1").length) {
       $('.marquee_mode-1').marquee({
         speed: 40,
@@ -1522,23 +1432,6 @@
         startVisible: true,
       });
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   });
 
@@ -1586,8 +1479,6 @@
 
 
 
-
-  $('select:not(.ignore)').niceSelect();
 
 
 

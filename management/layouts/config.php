@@ -40,7 +40,8 @@ function generate_csrf_token()
 }
 
 // CSRF token validation function
-function validate_csrf_token($token) {
+function validate_csrf_token($token)
+{
     return isset($_SESSION['csrf_token']) && hash_equals($_SESSION['csrf_token'], $token);
 }
 
@@ -84,6 +85,26 @@ function getFirstTwoSentences($html)
 
     // Temizlenmiş ve UTF-8'e uygun ilk iki cümleyi döndür
     return htmlspecialchars($output, ENT_QUOTES, 'UTF-8');
+}
+
+function getUserRole($user_id)
+{
+    global $pdo;
+    $get_role_sql = "SELECT role_name FROM roles WHERE role_id = :role_id";
+    if ($stmt = $pdo->prepare($get_role_sql)) {
+        $stmt->bindParam(':role_id', $user_id);
+        $stmt->execute();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        return ucfirst($row["role_name"]);
+    }
+}
+
+function youtubeToEmbed($url)
+{
+    if (strpos($url, 'watch?v=') !== false) {
+        return str_replace('watch?v=', 'embed/', $url);
+    }
+    return $url;
 }
 
 $gmailid = ''; // YOUR gmail email

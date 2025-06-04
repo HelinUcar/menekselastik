@@ -126,7 +126,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         <a href="index.php" class="auth-logo-dark">
                                             <div class="avatar-lg profile-user-wid m-3">
                                                 <span class="avatar-title rounded-circle bg-transparent">
-                                                    <img src="assets/images/logo.png" alt="" class="rounded-circle" height="180">
+                                                    <img src="assets/images/logo-1.png" alt=""  height="40">
                                                 </span>
                                             </div>
                                         </a>

@@ -3,7 +3,7 @@
 <?php include 'layouts/head-main.php'; ?>
 
 <head>
-    <title>Panel Üyeleri | MENEKŞE LASTİK YÖNETİM PANELİ</title>
+    <title>Lastik Listesi | MENEKŞE LASTİK YÖNETİM PANELİ</title>
     <?php include 'layouts/head.php'; ?>
     <link href="assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
     <link href="assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
@@ -22,11 +22,11 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                            <h4 class="mb-sm-0 font-size-18">Panel Üyeleri</h4>
+                            <h4 class="mb-sm-0 font-size-18">Lastik Listesi</h4>
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Üyeler</a></li>
-                                    <li class="breadcrumb-item active">Panel Üyeleri</li>
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Lastikler</a></li>
+                                    <li class="breadcrumb-item active">Lastik Listesi</li>
                                 </ol>
                             </div>
                         </div>
@@ -36,9 +36,9 @@
                     <div class="col-xl-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Üye Listesi</h4>
-                                <p class="card-title-desc">Buradan sadece yönetim paneline erişimi olan üyeleri görebilirsiniz.</p>
-                                <table id="user-list" class="table table-bordered dt-responsive nowrap w-100">
+                                <h4 class="card-title">Lastik Listesi</h4>
+                                <p class="card-title-desc">Buradan sitenizdeki lastikleri görüntüleyebilir ve düzenleyebilirsiniz.</p>
+                                <table id="tire-list" class="table table-bordered dt-responsive nowrap w-100">
                                     <thead>
                                         <tr>
                                             <th>ID</th>
@@ -56,7 +56,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> 
         <?php include 'layouts/footer.php'; ?>
     </div>
 </div>
@@ -111,11 +111,11 @@
 
     $(document).ready(function() {
         var csrfToken = '<?php echo $_SESSION["csrf_token"]; ?>';
-        var table = $('#user-list').DataTable({
+        var table = $('#tire-list').DataTable({
             lengthChange: false,
             buttons: ['copy', 'excel', 'pdf', 'colvis'],
             "ajax": {
-                "url": "engine/panel-user.php?action=get_users"
+                "url": "engine/tires.php?action=get_tires"
             },
             "columns": [{
                     "data": "id"
@@ -148,25 +148,25 @@
                 {
                     "data": "id",
                     "render": function(data, type, row, meta) {
-                        return '<a href="panel-user-edit.php?id=' + encodeURIComponent(data) + '" class="btn btn-primary btn-sm">Düzenle</a> ' +
-                            '<button data-id="' + encodeURIComponent(data) + '" class="btn btn-danger btn-sm delete-user">Sil</button>';
+                        return '<a href="tires-edit.php?id=' + encodeURIComponent(data) + '" class="btn btn-primary btn-sm">Düzenle</a> ' +
+                            '<button data-id="' + encodeURIComponent(data) + '" class="btn btn-danger btn-sm delete-tire">Sil</button>';
                     }
                 }
             ]
         });
 
 
-        //user add button to datatable
-        $('#user-list_wrapper .row .col-md-6:eq(0)').append('<a href="panel-user-add.php" class="btn btn-primary btn-sm">Yeni Kullanıcı Ekle</a>');
+        //tire add button to datatable
+        $('#tire-list_wrapper .row .col-md-6:eq(0)').append('<a href="tires-add.php" class="btn btn-primary btn-sm">Yeni Lastik Ekle</a>');
         table.buttons().container()
             .appendTo('#datatable-buttons_wrapper .col-md-6:eq(0)');
 
         $(".dataTables_length select").addClass('form-select form-select-sm');
 
-        $('#user-list').on('click', '.delete-user', function() {
+        $('#tire-list').on('click', '.delete-tire', function() {
             var id = $(this).data('id');
             $.ajax({
-                url: 'engine/panel-user.php?action=delete_user',
+                url: 'engine/tires.php?action=delete_tire',
                 method: 'POST',
                 dataType: "json",
                 data: {

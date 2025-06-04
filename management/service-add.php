@@ -3,8 +3,8 @@ include 'layouts/session.php';
 require_once "layouts/config.php";
 
 // Define variables and initialize with empty values
-$useremail = $username = $usersurname =  $password = $confirm_password = $role_id = "";
-$useremail_err = $username_err = $usersurname_err = $password_err = $confirm_password_err = $csfr_err = $role_err = $error= "";
+$useremail = $username = $usersurname =  $password = $confirm_password = "";
+$useremail_err = $username_err = $usersurname_err = $password_err = $confirm_password_err = $csfr_err = "";
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -29,25 +29,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-    // Validate role
-    if (empty(trim($_POST["role_id"]))) {
-        $role_err = "Bir rol seçiniz.";
-    } else {
-        $role_id = sanitize_input($_POST["role_id"]);
-    }
-
     // Validate username
-    if (empty(trim($_POST["username"]))) {
-        $username_err = "Bir ad giriniz.";
-    } else {
-        $username = sanitize_input($_POST["username"]);
-    }
+    $username = empty(trim($_POST["username"])) ? $username_err = "Bir ad giriniz." : sanitize_input($_POST["username"]);
     // Validate usersurname
-    if (empty(trim($_POST["usersurname"]))) {
-        $usersurname_err = "Bir soyad giriniz.";
-    } else {
-        $usersurname = sanitize_input($_POST["usersurname"]);
-    }
+    $usersurname = empty(trim($_POST["usersurname"])) ? $usersurname_err = "Bir soyad giriniz." : sanitize_input($_POST["usersurname"]);
     // Validate password
     if (empty(trim($_POST["password"]))) {
         $password_err = "Şifre giriniz.";
@@ -57,55 +42,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $password = sanitize_input($_POST["password"]);
     }
     // Validate confirm password
-    if (empty(trim($_POST["confirm_password"]))) {
-        $confirm_password_err = "Şifreyi tekrar giriniz.";
-    } else {
-        $confirm_password = sanitize_input($_POST["confirm_password"]);
-    }
+    $confirm_password = empty(trim($_POST["confirm_password"])) ? $confirm_password_err = "Şifreyi tekrar giriniz." : sanitize_input($_POST["confirm_password"]);
     if ($password !== $confirm_password) {
         $confirm_password_err = "Şifreler eşleşmiyor.";
     }
 
-    $user_image_path = null;
-    if (isset($_FILES['userimage']) && $_FILES['userimage']['error'] === UPLOAD_ERR_OK) {
-        $fileTmpPath = $_FILES['userimage']['tmp_name'];
-        $fileName = $_FILES['userimage']['name'];
-        $fileNameCmps = explode(".", $fileName);
-        $fileExtension = strtolower(end($fileNameCmps));
-
-        $allowedfileExtensions = ['jpg', 'jpeg', 'png', 'gif'];
-        if (in_array($fileExtension, $allowedfileExtensions)) {
-            $newFileName = uniqid('user_', true) . '.' . $fileExtension;
-            $uploadFileDir = 'uploads/users/';
-            $dest_path = $uploadFileDir . $newFileName;
-
-            if (!is_dir($uploadFileDir)) {
-                mkdir($uploadFileDir, 0755, true);
-            }
-
-            if (move_uploaded_file($fileTmpPath, $dest_path)) {
-                $user_image_path = $dest_path;
-            } else {
-                $error = 'Profil resmi yüklenemedi.';
-            }
-        } else {
-            $error = 'Yalnızca JPG, JPEG, PNG, GIF dosyalarına izin verilir.';
-        }
-    }
-
-
     // Check input errors before inserting into database
     if (empty($useremail_err) && empty($username_err) && empty($usersurname_err) && empty($password_err) && empty($confirm_password_err) && empty($csfr_err)) {
-        $sql = "INSERT INTO users (useremail, username, usersurname, password, token, role_id, userphoto)
-        VALUES (:useremail, :username, :usersurname, :password, :token, :role_id, :userphoto)";
-
+        $sql = "INSERT INTO users (useremail, username, usersurname, password, token) VALUES (:useremail, :username, :usersurname, :password, :token)";
         $stmt = $pdo->prepare($sql);
         $param_password = password_hash($password, PASSWORD_ARGON2ID);
         $param_token = bin2hex(random_bytes(50));
         $stmt->bindParam(':useremail', $useremail, PDO::PARAM_STR);
         $stmt->bindParam(':username', $username, PDO::PARAM_STR);
-        $stmt->bindParam(':role_id', $role_id, PDO::PARAM_INT);
-        $stmt->bindParam(':userphoto', $user_image_path, PDO::PARAM_STR);
         $stmt->bindParam(':usersurname', $usersurname, PDO::PARAM_STR);
         $stmt->bindParam(':password', $param_password, PDO::PARAM_STR);
         $stmt->bindParam(':token', $param_token, PDO::PARAM_STR);
@@ -123,7 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <?php include 'layouts/head-main.php'; ?>
 
 <head>
-    <title>Panel Üyesi Ekle | MENEKŞE LASTİK YÖNETİM PANELİ</title>
+    <title>Servis Ekle | MENEKŞE LASTİK YÖNETİM PANELİ</title>
     <?php include 'layouts/head.php'; ?>
     <?php include 'layouts/head-style.php'; ?>
     <link rel="stylesheet" type="text/css" href="assets/libs/toastr/build/toastr.min.css">
@@ -145,12 +94,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="row">
                     <div class="col-12">
                         <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                            <h4 class="mb-sm-0 font-size-18">Panel Üyesi Ekle</h4>
+                            <h4 class="mb-sm-0 font-size-18">Servis Ekle</h4>
 
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Üyeler</a></li>
-                                    <li class="breadcrumb-item active">Panel Üyesi Ekle</li>
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Servis</a></li>
+                                    <li class="breadcrumb-item active">Servis Ekle</li>
                                 </ol>
                             </div>
 
@@ -166,15 +115,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <h4 class="card-title">Üye Ekle</h4>
                                 <p class="card-title-desc">Buradan oluşturduğunuz üyeler sadece yönetim paneline erişim sağlayabilir.</p>
 
-                                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
+                                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 
                                     <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
-
-                                    <div class="mb-3">
-                                        <label for="userimage" class="form-label">Profil Resmi</label>
-                                        <input type="file" class="form-control" id="userimage" name="userimage">
-                                        <span class="text-muted"> * Zorunlu Değil</span>
-                                    </div>
 
                                     <div class="mb-3 <?php echo (!empty($useremail_err)) ? 'has-error' : ''; ?>">
                                         <label for="useremail" class="form-label">E-Posta</label>
@@ -192,28 +135,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         <input type="text" class="form-control" id="usersurname" name="usersurname" placeholder="Soyad giriniz" value="<?php echo $usersurname; ?>">
                                         <span class="text-danger"><?php echo $usersurname_err; ?></span>
                                     </div>
-
-                                    <div class="mb-3 <?php echo (!empty($role_err)) ? 'has-error' : ''; ?>">
-                                        <label for="role" class="form-label">Rol</label>
-                                        <select class="form-select" id="role" name="role_id">
-                                            <option value="">Seçiniz</option>
-                                            <?php
-                                            $get_role_sql = "SELECT * FROM roles";
-                                            if ($stmt = $pdo->prepare($get_role_sql)) {
-                                                $stmt->execute();
-                                                $result = $stmt->fetchAll();
-                                                foreach ($result as $row) {
-                                                    $selected = (!empty($role_id) && $role_id == $row['role_id']) ? 'selected' : '';
-                                                    echo '<option value="' . htmlspecialchars($row['role_id']) . '" ' . $selected . '>' . ucfirst(htmlspecialchars($row['role_name'])) . '</option>';
-                                                }
-                                            }
-                                            ?>
-
-                                        </select>
-                                        <span class="text-danger"><?php echo $role_err; ?></span>
-                                    </div>
-
-
 
                                     <div class="mb-3 <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
                                         <label for="userpassword" class="form-label">Şifre</label>

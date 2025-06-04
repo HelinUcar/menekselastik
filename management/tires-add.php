@@ -3,8 +3,8 @@ include 'layouts/session.php';
 require_once "layouts/config.php";
 
 // Define variables and initialize with empty values
-$useremail = $username = $usersurname =  $password = $confirm_password = $role_id = "";
-$useremail_err = $username_err = $usersurname_err = $password_err = $confirm_password_err = $csfr_err = $role_err = $error= "";
+$tireimage = $tiremodel = $tirewidth = $tireheight = $tirediameter = $role_id = $loadindex = $speedrating = "";
+$tiremodel_err = $tirewidth_err = $tireheight_err = $tirediameter_err = $loadindex_err = $csfr_err = $role_err = $error = "";
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -13,63 +13,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $csfr_err = "Geçersiz CSRF token! İşlem iptal edildi.";
     }
 
-    // Validate useremail
-    if (empty(trim($_POST["useremail"]))) {
-        $useremail_err = "Bir e-posta adresi giriniz.";
-    } elseif (!filter_var($_POST["useremail"], FILTER_VALIDATE_EMAIL)) {
-        $useremail_err = "Geçerli bir e-posta adresi giriniz.";
-    } else {
-        $useremail = sanitize_input($_POST["useremail"]);
-        $sql = "SELECT id FROM users WHERE useremail = :useremail";
-        $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(':useremail', $useremail, PDO::PARAM_STR);
-        $stmt->execute();
-        if ($stmt->rowCount() > 0) {
-            $useremail_err = "Bu e-posta adresi zaten kullanımda.";
-        }
-    }
 
-    // Validate role
-    if (empty(trim($_POST["role_id"]))) {
-        $role_err = "Bir rol seçiniz.";
-    } else {
-        $role_id = sanitize_input($_POST["role_id"]);
-    }
-
-    // Validate username
-    if (empty(trim($_POST["username"]))) {
-        $username_err = "Bir ad giriniz.";
-    } else {
-        $username = sanitize_input($_POST["username"]);
-    }
-    // Validate usersurname
-    if (empty(trim($_POST["usersurname"]))) {
-        $usersurname_err = "Bir soyad giriniz.";
-    } else {
-        $usersurname = sanitize_input($_POST["usersurname"]);
-    }
-    // Validate password
-    if (empty(trim($_POST["password"]))) {
-        $password_err = "Şifre giriniz.";
-    } elseif (!preg_match("/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/", $_POST["password"])) {
-        $password_err = "Şifre en az 8 karakter, bir büyük harf, bir küçük harf, bir rakam ve bir özel karakter içermelidir.";
-    } else {
-        $password = sanitize_input($_POST["password"]);
-    }
-    // Validate confirm password
-    if (empty(trim($_POST["confirm_password"]))) {
-        $confirm_password_err = "Şifreyi tekrar giriniz.";
-    } else {
-        $confirm_password = sanitize_input($_POST["confirm_password"]);
-    }
-    if ($password !== $confirm_password) {
-        $confirm_password_err = "Şifreler eşleşmiyor.";
-    }
 
     $user_image_path = null;
-    if (isset($_FILES['userimage']) && $_FILES['userimage']['error'] === UPLOAD_ERR_OK) {
-        $fileTmpPath = $_FILES['userimage']['tmp_name'];
-        $fileName = $_FILES['userimage']['name'];
+    if (isset($_FILES['tireimage']) && $_FILES['tireimage']['error'] === UPLOAD_ERR_OK) {
+        $fileTmpPath = $_FILES['tireimage']['tmp_name'];
+        $fileName = $_FILES['tireimage']['name'];
         $fileNameCmps = explode(".", $fileName);
         $fileExtension = strtolower(end($fileNameCmps));
 
@@ -123,7 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <?php include 'layouts/head-main.php'; ?>
 
 <head>
-    <title>Panel Üyesi Ekle | MENEKŞE LASTİK YÖNETİM PANELİ</title>
+    <title>Lastik Ekle | MENEKŞE LASTİK YÖNETİM PANELİ</title>
     <?php include 'layouts/head.php'; ?>
     <?php include 'layouts/head-style.php'; ?>
     <link rel="stylesheet" type="text/css" href="assets/libs/toastr/build/toastr.min.css">
@@ -145,12 +94,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="row">
                     <div class="col-12">
                         <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                            <h4 class="mb-sm-0 font-size-18">Panel Üyesi Ekle</h4>
+                            <h4 class="mb-sm-0 font-size-18">Lastik Ekle</h4>
 
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Üyeler</a></li>
-                                    <li class="breadcrumb-item active">Panel Üyesi Ekle</li>
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Lastikler</a></li>
+                                    <li class="breadcrumb-item active">Lastik Ekle</li>
                                 </ol>
                             </div>
 
@@ -163,51 +112,65 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="col-xl-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Üye Ekle</h4>
-                                <p class="card-title-desc">Buradan oluşturduğunuz üyeler sadece yönetim paneline erişim sağlayabilir.</p>
+                                <h4 class="card-title">Lastik Ekle</h4>
+                                <p class="card-title-desc">Buradan oluşturduğunuz lastikleri kampanyalı lastiklerinizde ve otel hizmetinde kullanabilirsiniz.</p>
 
                                 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
 
+
                                     <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
 
-                                    <div class="mb-3">
-                                        <label for="userimage" class="form-label">Profil Resmi</label>
-                                        <input type="file" class="form-control" id="userimage" name="userimage">
-                                        <span class="text-muted"> * Zorunlu Değil</span>
+                                    <div class="mb-3 <?php echo (!empty($tireimage_err)) ? 'has-error' : ''; ?>">
+                                        <label for="tireimage" class="form-label">Lastik Görseli</label>
+                                        <input type="file" class="form-control" id="tireimage" name="tireimage">
                                     </div>
 
-                                    <div class="mb-3 <?php echo (!empty($useremail_err)) ? 'has-error' : ''; ?>">
-                                        <label for="useremail" class="form-label">E-Posta</label>
-                                        <input type="email" class="form-control" id="useremail" name="useremail" placeholder="E-posta adresi giriniz" value="<?php echo $useremail; ?>">
-                                        <span class="text-danger"><?php echo $useremail_err; ?></span>
+                                    <div class="mb-3 <?php echo (!empty($tiremodel_err)) ? 'has-error' : ''; ?>">
+                                        <label for="tiremodel" class="form-label">Lastik Modeli</label>
+                                        <input type="text" class="form-control" id="tiremodel" name="tiremodel" placeholder="Lastik modeli giriniz" value="<?php echo $tiremodel; ?>">
+                                        <span class="text-danger"><?php echo $tiremodel_err; ?></span>
                                     </div>
 
-                                    <div class="mb-3 <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
-                                        <label for="username" class="form-label">Ad</label>
-                                        <input type="text" class="form-control" id="username" name="username" placeholder="Ad giriniz" value="<?php echo $username; ?>">
-                                        <span class="text-danger"><?php echo $username_err; ?></span>
+                                    <div class="row">
+                                        <div class="col-md-4 mb-3 <?php echo (!empty($tirewidth_err)) ? 'has-error' : ''; ?>">
+                                            <label for="tirewidth" class="form-label">Lastik Genişliği</label>
+                                            <input type="number" class="form-control" id="tirewidth" name="tirewidth" min="0" placeholder="Lastik genişliği giriniz" value="<?php echo $tirewidth; ?>">
+                                            <span class="text-danger"><?php echo $tirewidth_err; ?></span>
+                                        </div>
+                                        <div class="col-md-4 mb-3 <?php echo (!empty($tireheight_err)) ? 'has-error' : ''; ?>">
+                                            <label for="tireheight" class="form-label">Lastik Yüksekliği</label>
+                                            <input type="number" class="form-control" id="tireheight" name="tireheight" min="0" placeholder="Lastik yüksekliği giriniz" value="<?php echo $tireheight; ?>">
+                                            <span class="text-danger"><?php echo $tireheight_err; ?></span>
+                                        </div>
+
+                                        <div class="col-md-4 mb-3 <?php echo (!empty($tirediameter_err)) ? 'has-error' : ''; ?>">
+                                            <label for="tirediameter" class="form-label">Lastik Çapı</label>
+                                            <input type="number" class="form-control" id="tirediameter" name="tirediameter" min="0" placeholder="Lastik çapını giriniz" value="<?php echo $tirediameter; ?>">
+                                            <span class="text-danger"><?php echo $tirediameter_err; ?></span>
+                                        </div>
                                     </div>
-                                    <div class="mb-3 <?php echo (!empty($usersurname_err)) ? 'has-error' : ''; ?>">
-                                        <label for="usersurname" class="form-label">Soyad</label>
-                                        <input type="text" class="form-control" id="usersurname" name="usersurname" placeholder="Soyad giriniz" value="<?php echo $usersurname; ?>">
-                                        <span class="text-danger"><?php echo $usersurname_err; ?></span>
+
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3 <?php echo (!empty($loadindex_err)) ? 'has-error' : ''; ?>">
+                                            <label for="loadindex" class="form-label">Yük Endeksi</label>
+                                            <input type="text" class="form-control" id="loadindex" name="loadindex" placeholder="Yük endeksini giriniz" value="<?php echo $loadindex; ?>">
+                                            <span class="text-danger"><?php echo $loadindex_err; ?></span>
+                                        </div>
+                                        <div class="col-md-6 mb-3 <?php echo (!empty($speedrating_err)) ? 'has-error' : ''; ?>">
+                                            <label for="speedrating" class="form-label">Hız Endeksi</label>
+                                            <input type="text" class="form-control" id="speedrating" name="speedrating" placeholder="Hız endeksini giriniz" value="<?php echo $speedrating; ?>">
+                                            <span class="text-danger"><?php echo $loadindex_err; ?></span>
+                                        </div>
                                     </div>
+
 
                                     <div class="mb-3 <?php echo (!empty($role_err)) ? 'has-error' : ''; ?>">
-                                        <label for="role" class="form-label">Rol</label>
+                                        <label for="role" class="form-label">Sezon</label>
                                         <select class="form-select" id="role" name="role_id">
                                             <option value="">Seçiniz</option>
-                                            <?php
-                                            $get_role_sql = "SELECT * FROM roles";
-                                            if ($stmt = $pdo->prepare($get_role_sql)) {
-                                                $stmt->execute();
-                                                $result = $stmt->fetchAll();
-                                                foreach ($result as $row) {
-                                                    $selected = (!empty($role_id) && $role_id == $row['role_id']) ? 'selected' : '';
-                                                    echo '<option value="' . htmlspecialchars($row['role_id']) . '" ' . $selected . '>' . ucfirst(htmlspecialchars($row['role_name'])) . '</option>';
-                                                }
-                                            }
-                                            ?>
+                                            <option value="Yaz">Yaz</option>
+                                            <option value="Kış">Kış</option>
+                                            <option value="Dört Mevsim">Dört Mevsim</option>
 
                                         </select>
                                         <span class="text-danger"><?php echo $role_err; ?></span>
@@ -215,17 +178,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 
-                                    <div class="mb-3 <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
-                                        <label for="userpassword" class="form-label">Şifre</label>
-                                        <input type="password" class="form-control" id="userpassword" name="password" placeholder="Şifre" value="<?php echo $password; ?>">
-                                        <span class="text-danger"><?php echo $password_err; ?></span>
-                                    </div>
 
-                                    <div class="mb-3 <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
-                                        <label for="confirm_password" class="form-label">Tekrar Şifre</label>
-                                        <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Tekrar Şifre" value="<?php echo $confirm_password; ?>">
-                                        <span class="text-danger"><?php echo $confirm_password_err; ?></span>
-                                    </div>
 
                                     <div class="mt-4 d-grid d-flex flex-wrap gap-2">
                                         <button class="btn btn-primary waves-effect waves-light" name="kaydet" type="submit">Kaydet</button>
