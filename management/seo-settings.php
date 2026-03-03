@@ -1,5 +1,5 @@
-<?php include 'layouts/session.php'; ?>
-<?php
+<?php 
+include 'layouts/session.php'; 
 // Include config file
 require_once "layouts/config.php";
 

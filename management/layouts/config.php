@@ -99,13 +99,7 @@ function getUserRole($user_id)
     }
 }
 
-function youtubeToEmbed($url)
-{
-    if (strpos($url, 'watch?v=') !== false) {
-        return str_replace('watch?v=', 'embed/', $url);
-    }
-    return $url;
-}
+
 
 $gmailid = ''; // YOUR gmail email
 $gmailpassword = ''; // YOUR gmail password

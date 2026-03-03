@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Validate credentials
     if (empty($useremail_err) && empty($password_err) && empty($csfr_err) && empty($csfr_err2)) {
         // Prepare a select statement
-        $sql = "SELECT id, useremail, username, usersurname, password, role_id FROM users WHERE useremail = :useremail";
+        $sql = "SELECT id,userphoto, useremail, username, usersurname, password, role_id FROM users WHERE useremail = :useremail";
 
         if ($stmt = $pdo->prepare($sql)) {
             // Bind variables to the prepared statement as parameters
@@ -69,6 +69,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $usersurname = $row["usersurname"];
                     $hashed_password = $row["password"];
                     $role_id = $row["role_id"];
+                    $userphoto = $row["userphoto"];
+
+
 
                     if (password_verify($password, $hashed_password)) {
                         // Reset CSRF failure count on successful login
@@ -81,6 +84,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $_SESSION["username"] = $username;
                         $_SESSION["usersurname"] = $usersurname;
                         $_SESSION["role_id"] = $role_id;
+                        if (isset($userphoto) && !empty($userphoto)) {
+                            $_SESSION["userphoto"] = $userphoto;
+                        } else {
+                            $_SESSION["userphoto"] = "assets/images/users/no-user.png";
+                        }
                         $_SESSION['csrf_token'] = generate_csrf_token();
 
                         $success = "Giriş Başarılı. Yönlendiriliyorsunuz...";
@@ -126,7 +134,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         <a href="index.php" class="auth-logo-dark">
                                             <div class="avatar-lg profile-user-wid m-3">
                                                 <span class="avatar-title rounded-circle bg-transparent">
-                                                    <img src="assets/images/logo-1.png" alt=""  height="40">
+                                                    <img src="assets/images/logo-1.png" alt="" height="40">
                                                 </span>
                                             </div>
                                         </a>
@@ -161,13 +169,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         <button class="btn btn-dark waves-effect waves-light" type="submit" value="Login">Giriş Yap</button>
                                     </div>
 
-                                    <div class="mt-4 text-center">
+                                    <!-- <div class="mt-4 text-center">
                                         <a href="forgot-password.php" class="text-muted"><i class="mdi mdi-lock me-1"></i> Şifremi Unuttum</a>
-                                    </div>
-
-
-
-
+                                    </div> -->
+                                    
                                 </form>
                             </div>
 

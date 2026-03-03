@@ -1,169 +1,101 @@
-<footer class="site-footer site-footer-two site-footer-four">
-    <div class="site-footer__wrap">
-        <div class="site-footer-two__shape-1"></div>
-        <div class="site-footer-two__shape-2"></div>
-        <div class="site-footer__top">
-            <div class="container">
-                <div class="site-footer__top-inner">
-                    <div class="row">
-                        <div
-                            class="col-xl-2 col-lg-6 col-md-6 wow fadeInUp"
-                            data-wow-delay="100ms">
-                            <div class="footer-widget__about">
-                                <div class="footer-widget__about-logo">
-                                    <a href="index.html"><img src="assets/images/resources/logo-2.png" alt="" /></a>
-                                </div>
-                                <div class="footer-widget__contact-info">
-                                    <ul class="footer-widget__contact-list list-unstyled">
-                                        <li>
-                                            <div class="footer-widget__contact-icon-box">
-                                                <span class="icon-pin"></span>
-                                                <p>Adres</p>
-                                            </div>
-                                            <p class="footer-widget__contact-text">
-                                                SEMT, İvedik OSB, 1354. Cadde No:171, 06378 İvedik Osb/Yenimahalle/Ankara
-                                            </p>
-                                        </li>
-                                        <li>
-                                            <div class="footer-widget__contact-icon-box">
-                                                <span class="icon-phone"></span>
-                                                <p>Telefon</p>
-                                            </div>
-                                            <p class="footer-widget__contact-text">
-                                                <a href="tel:<?= $seo_settings_arr['phone'] ?>"><?= $seo_settings_arr['phone'] ?></a> - <a href="tel:<?= $seo_settings_arr['whatsapp'] ?>"><?= $seo_settings_arr['whatsapp'] ?></a>
-                                            </p>
-                                        </li>
-                                        <li>
-                                            <div class="footer-widget__contact-icon-box">
-                                                <span class="fab fa-whatsapp"></span>
-                                                <p>WhatsApp</p>
-                                            </div>
-                                            <p class="footer-widget__contact-text">
-                                                <a href="https://wa.me/<?= $seo_settings_arr['whatsapp'] ?>" target="_blank"><?= $seo_settings_arr['whatsapp'] ?></a>
-                                            </p>
-                                        </li>
-                                        <li>
-                                            <div class="footer-widget__contact-icon-box">
-                                                <span class="icon-mail"></span>
-                                                <p>E-posta</p>
-                                            </div>
-                                            <p class="footer-widget__contact-text">
-                                                <a href="mailto:<?= $seo_settings_arr['email'] ?>"><?= $seo_settings_arr['email'] ?></a>
-                                            </p>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div
-                            class="col-xl-3 col-lg-6 col-md-6 wow fadeInUp"
-                            data-wow-delay="200ms">
-                            <div class="footer-widget__page-link">
-                                <h4 class="footer-widget__title">Sayfalar</h4>
-                                <ul class="footer-widget__page-link-list list-unstyled">
-                                    <li>
-                                        <a href="hakkimizda">
-                                            <span class="icon-double-arrow-right"></span>
-                                            <p>Hakkımızda</p>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="hizmetlerimiz">
-                                            <span class="icon-double-arrow-right"></span>
-                                            <p>Hizmetlerimiz</p>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="lastikler">
-                                            <span class="icon-double-arrow-right"></span>
-                                            <p>Lastikler</p>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="jantlar">
-                                            <span class="icon-double-arrow-right"></span>
-                                            <p>Jantlar</p>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="kampanyalar">
-                                            <span class="icon-double-arrow-right"></span>
-                                            <p>Kampanyalar</p>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="haberler">
-                                            <span class="icon-double-arrow-right"></span>
-                                            <p>Haberler</p>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="iletisim">
-                                            <span class="icon-double-arrow-right"></span>
-                                            <p>İletişim</p>
-                                        </a>
-                                    </li>
-
-                                </ul>
-                            </div>
-                        </div>
-                        <div
-                            class="col-xl-3 col-lg-6 col-md-6 wow fadeInUp"
-                            data-wow-delay="300ms">
-                            <div class="footer-widget__social-box">
-                                <h4 class="footer-widget__title">Sosyal Medya</h4>
-                                <p class="footer-widget__social-text">
-                                    Sosyal Medya Hesaplarımızdan Bizi Takip Edin!
-                                </p>
-                                <div class="footer-widget__social">
-                                    <a href="#"><span class="icon-facebook-f"></span></a>
-                                    <a href="#"><span class="icon-instagram"></span></a>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div
-                            class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp"
-                            data-wow-delay="400ms">
-                            <div class="site-footer-four__contact-box">
-                                <h4 class="site-footer-four__contact-title">
-                                    Çalışma Saatleri
-                                </h4>
-                                <ul class="list-unstyled site-footer-four__contact-time">
-                                    <li>Pazartesi-Cumartesi 08:30-19:00</li>
-                                    <li>Pazar günleri kapalı!</li>
-                                </ul>
-                                <div class="site-footer-four__btn-box">
-                                    <a href="iletisim" class="thm-btn">İleitişime Geç<span class="icon-arrow-up-right"></span></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="site-footer__bottom">
+<footer class="footer area-bg">
+    <div class="area-bg__inner">
+        <div class="footer__main">
             <div class="container">
                 <div class="row">
-                    <div class="col-xl-12">
-                        <div class="site-footer__bottom-inner">
-                            <div class="site-footer__copyright">
-                                <p class="site-footer__copyright-text">
-                                    &copy; Copyrights <script>
-                                        document.write(new Date().getFullYear())
-                                    </script> Menekşe Lastik
-                                </p>
+                    <div class="col-md-6">
+                        <div class="footer-section">
+                            <a class="footer__logo" href="home.html">
+                                <img class="img-responsive" src="assets/media/general/logo.png" alt="Logo" />
+                            </a>
+                            <div class="footer__info">
+                                Menekşe Lastik; Bridgestone, Lassa ve Dayton markalarında satış, montaj & balans, rotasyon, lastik tamiri ve lastik oteli hizmetleri sunar. Aynı gün randevu, şeffaf fiyat ve işçilik garantisi ile yanınızdayız.
                             </div>
-                            <div class="site-footer__bottom-menu-box">
-                                <ul class="list-unstyled site-footer__bottom-menu">
-                                    <li><a href="about.html"> KVKK Politikası</a></li>
-                                    <li><a href="about.html">Çerez Politikası</a></li>
-                                </ul>
-                            </div>
+                            <ul class="social-net list-inline">
+                                <li class="social-net__item"><a class="social-net__link text-primary_h" href="facebook.com"><i class="icon fa fa-facebook"></i></a>
+                                </li>
+
+                                <li class="social-net__item"><a class="social-net__link text-primary_h" href="instagram.com"><i class="icon fa fa-instagram"></i></a>
+                                </li>
+                                <!-- <li class="social-net__item"><a class="social-net__link text-primary_h" href="youtube.com"><i class="icon fa fa-youtube-play"></i></a>
+                                </li> -->
+                            </ul>
+                            <!-- end .social-list-->
                         </div>
+                    </div>
+                    <!-- <div class="col-md-4">
+                        <section class="footer-section footer-section_list-columns">
+                            <h3 class="footer-section__title ui-title-inner">Popüler Lastik Ebatları</h3>
+                            <ul class="footer-list footer-list_columns list-unstyled">
+                                <li class="footer-list__item"><a class="footer-list__link" href="about.html">Alfa Romeo</a>
+                                </li>
+                                <li class="footer-list__item"><a class="footer-list__link" href="about.html">Ferrari</a>
+                                </li>
+                                <li class="footer-list__item"><a class="footer-list__link" href="about.html">BMW Series</a>
+                                </li>
+                                <li class="footer-list__item"><a class="footer-list__link" href="about.html">Mercedes</a>
+                                </li>
+                                <li class="footer-list__item"><a class="footer-list__link" href="about.html">Aston Martin</a>
+                                </li>
+                                <li class="footer-list__item"><a class="footer-list__link" href="about.html">Toyota</a>
+                                </li>
+                                <li class="footer-list__item"><a class="footer-list__link" href="about.html">Opel</a>
+                                </li>
+                                <li class="footer-list__item"><a class="footer-list__link" href="about.html">Land Rover</a>
+                                </li>
+                                <li class="footer-list__item"><a class="footer-list__link" href="about.html">Mclaren</a>
+                                </li>
+                                <li class="footer-list__item"><a class="footer-list__link" href="about.html">Peogeot</a>
+                                </li>
+                                <li class="footer-list__item"><a class="footer-list__link" href="about.html">Renault</a>
+                                </li>
+                            </ul>
+                        </section>
+                    </div> -->
+                    <div class="col-md-2">
+                        <section class="footer-section footer-section_list-one">
+                            <h3 class="footer-section__title ui-title-inner">Sayfalar</h3>
+                            <ul class="footer-list list-unstyled">
+                                <li class="footer-list__item"><a class="footer-list__link" href="hakkimizda">Hakkımızda</a>
+                                </li>
+                                <li class="footer-list__item"><a class="footer-list__link" href="hizmetlerimiz">Hizmetlerimiz</a>
+                                </li>
+                                <li class="footer-list__item"><a class="footer-list__link" href="lastikler">Lastikler</a>
+                                </li>
+                                <li class="footer-list__item"><a class="footer-list__link" href="jantlar">Jantlar</a>
+                                </li>
+                                <li class="footer-list__item"><a class="footer-list__link" href="kampanyalar">Kampanyalar</a>
+                                </li>
+                                <li class="footer-list__item"><a class="footer-list__link" href="iletisim">İletişim</a>
+                                </li>
+                            </ul>
+                        </section>
+                    </div>
+                    <div class="col-md-3">
+                        <section class="footer-section">
+                            <h3 class="footer-section__title ui-title-inner">Adres</h3>
+                            <div class="footer-contact footer-contact_lg">Bizi Arayın <span class="text-primary"> <a href="tel:<?= $seo_settings_arr['phone'] ?>"><?= $seo_settings_arr['phone'] ?></a></span>
+                            </div>
+                            <div class="footer-contact"><i class="icon icon-xs fa fa-envelope-o"></i>info@menekselastik.com</div>
+                            <div class="footer-contact"><i class="icon icon-lg fa fa-map-marker"></i>SEMT, İvedik OSB, 1354. Cadde No:171, 06378 İvedik Osb/Yenimahalle/Ankara</div>
+                            <div class="footer-contact"><i class="icon fa fa-clock-o"></i>Pazartesi-Cumartesi 08:30-19:00 <br />
+                                Pazar günleri kapalı!</div>
+                        </section>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <script>
+                            document.write(new Date().getFullYear())
+                        </script> © MENEKŞE LASTİK
+                        <!-- <a class="copyright__link" href="kvkk">Privacy Policy</a><a class="copyright__link" href="cerez-politikasi">Terms & Conditions</a> -->
+                    </div>
+                </div>
+            </div>
+        </div><span class="btn-up" id="toTop">Yukarı</span>
     </div>
 </footer>

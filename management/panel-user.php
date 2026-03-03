@@ -1,6 +1,8 @@
-<?php include 'layouts/session.php'; ?>
+<?php
 
-<?php include 'layouts/head-main.php'; ?>
+include 'layouts/session.php';
+include 'layouts/head-main.php';
+?>
 
 <head>
     <title>Panel Üyeleri | MENEKŞE LASTİK YÖNETİM PANELİ</title>
@@ -37,6 +39,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">Üye Listesi</h4>
+
                                 <p class="card-title-desc">Buradan sadece yönetim paneline erişimi olan üyeleri görebilirsiniz.</p>
                                 <table id="user-list" class="table table-bordered dt-responsive nowrap w-100">
                                     <thead>
@@ -149,7 +152,7 @@
                     "data": "id",
                     "render": function(data, type, row, meta) {
                         return '<a href="panel-user-edit.php?id=' + encodeURIComponent(data) + '" class="btn btn-primary btn-sm">Düzenle</a> ' +
-                            '<button data-id="' + encodeURIComponent(data) + '" class="btn btn-danger btn-sm delete-user">Sil</button>';
+                            (<?= $_SESSION['role_id'] ?> == 1 || <?= $_SESSION['role_id'] ?> == 2 ? '<button data-id="' + encodeURIComponent(data) + '" class="btn btn-danger btn-sm delete-user">Sil</button>' : '');
                     }
                 }
             ]
@@ -183,7 +186,7 @@
                     }
                 },
                 error: function(xhr) {
-                    console.log("XHR:", xhr.responseText); 
+                    console.log("XHR:", xhr.responseText);
                     showError('Hata oluştu: ' + xhr.responseText);
                 }
             });

@@ -11,7 +11,14 @@ RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^ - [L]
 
 
-RewriteRule ^duyuru-arama$ index.php?p=duyuru-arama [L]
+# Özel sayfalar için yönlendirme
+RewriteRule ^lastikler/([0-9a-zA-Z-_]+)$ index.php?p=lastikler&page=$1 [L,QSA]
+RewriteRule ^jantlar/([0-9a-zA-Z-_]+)$ index.php?p=jantlar&page=$1 [L,QSA]
+RewriteRule ^kampanyalar/([0-9a-zA-Z-_]+)$ index.php?p=kampanyalar&page=$1 [L,QSA]
+RewriteRule ^kampanya/([0-9a-zA-Z-_]+)/([0-9a-zA-Z-_]+)$ index.php?p=kampanya&name=$1&id=$2 [L,QSA]
+RewriteRule ^lastik/([0-9a-zA-Z-_]+)$ index.php?p=lastik&model_link=$1 [L,QSA]
+RewriteRule ^jant/([0-9a-zA-Z-_]+)$ index.php?p=jant&model_link=$1 [L,QSA]
+
 
 # Tüm diğer istekler için genel yönlendirme
 RewriteRule ^(.*)$ index.php?p=$1 [QSA,L]

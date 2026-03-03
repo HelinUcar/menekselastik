@@ -1,6 +1,8 @@
-<?php include 'layouts/session.php'; ?>
+<?php
 
-<?php include 'layouts/head-main.php'; ?>
+include 'layouts/session.php'; 
+
+ include 'layouts/head-main.php'; ?>
 
 <head>
     <title>Lastik Listesi | MENEKŞE LASTİK YÖNETİM PANELİ</title>
@@ -42,11 +44,13 @@
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Adı - Soyadı</th>
-                                            <th>E-Posta</th>
-                                            <th>Rol</th>
-                                            <th>Kayıt Zamanı</th>
-                                            <th>İşlemler</th>
+                                            <th>Resim</th>
+                                            <th>Model</th>
+                                            <th>Sezon</th>
+                                            <th>Üretici</th>
+                                            <th>Araç Tipleri</th>
+                                            <th>Runflat</th>
+                                            <th>Aksiyon</th>
                                         </tr>
                                     </thead>
                                     <tbody></tbody>
@@ -56,7 +60,7 @@
                     </div>
                 </div>
             </div>
-        </div> 
+        </div>
         <?php include 'layouts/footer.php'; ?>
     </div>
 </div>
@@ -111,50 +115,50 @@
 
     $(document).ready(function() {
         var csrfToken = '<?php echo $_SESSION["csrf_token"]; ?>';
+
         var table = $('#tire-list').DataTable({
             lengthChange: false,
             buttons: ['copy', 'excel', 'pdf', 'colvis'],
             "ajax": {
-                "url": "engine/tires.php?action=get_tires"
+                "url": "engine/tires.php?action=get_tires",
             },
-            "columns": [{
-                    "data": "id"
+            columns: [{
+                    data: "id"
                 },
                 {
-                    "data": "username",
+                    data: "photo",
                     "render": function(data, type, row, meta) {
-                        var imageSrc = row.userphoto && row.userphoto !== "" ?
-                            row.userphoto :
-                            "assets/images/users/no-user.png";
-
-                        var fullName = data + ' ' + row.usersurname;
-
-                        return '<div class="d-flex align-items-center">' +
-                            '<img class="rounded-circle avatar-xs me-2" src="' + imageSrc + '" alt="">' +
-                            '<span>' + fullName + '</span>' +
-                            '</div>';
+                        return '<img src="' + data + '" class="img-fluid" style="max-width: 70px;">';
                     }
                 },
                 {
-                    "data": "useremail"
+                    data: "model"
                 },
                 {
-                    "data": "role_name"
-
+                    data: "season"
                 },
                 {
-                    "data": "created_at"
+                    data: "manufacturer"
                 },
                 {
-                    "data": "id",
+                    data: "vehicle_types"
+                },
+                {
+                    data: "run_flat",
                     "render": function(data, type, row, meta) {
-                        return '<a href="tires-edit.php?id=' + encodeURIComponent(data) + '" class="btn btn-primary btn-sm">Düzenle</a> ' +
-                            '<button data-id="' + encodeURIComponent(data) + '" class="btn btn-danger btn-sm delete-tire">Sil</button>';
+                        return data ? 'Evet' : 'Hayır';
                     }
+                },
+                {
+                    data: "id",
+                    "render": function(data, type, row, meta) {
+                        return '<a href="tires-edit.php?id=' + data + '" class="btn btn-sm btn-primary">Düzenle</a> ' +
+                            '<button class="btn btn-sm btn-danger delete-tire" data-id="' + data + '">Sil</button>';
+                    }
+
                 }
             ]
         });
-
 
         //tire add button to datatable
         $('#tire-list_wrapper .row .col-md-6:eq(0)').append('<a href="tires-add.php" class="btn btn-primary btn-sm">Yeni Lastik Ekle</a>');
@@ -183,7 +187,7 @@
                     }
                 },
                 error: function(xhr) {
-                    console.log("XHR:", xhr.responseText); 
+                    console.log("XHR:", xhr.responseText);
                     showError('Hata oluştu: ' + xhr.responseText);
                 }
             });

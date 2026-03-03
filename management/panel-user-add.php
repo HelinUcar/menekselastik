@@ -1,4 +1,5 @@
 <?php
+
 include 'layouts/session.php';
 require_once "layouts/config.php";
 

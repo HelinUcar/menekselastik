@@ -1,6 +1,6 @@
-<?php include 'layouts/session.php'; ?>
+<?php 
 
-<?php
+include 'layouts/session.php'; 
 // Include config file
 require_once "layouts/config.php";
 
@@ -45,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Validate profilephoto
-    if (empty(trim($_FILES["blog_photo"]["tmp_name"]))) {
+    if (empty(trim($_FILES["profilephoto"]["tmp_name"]))) {
         $profilephoto_err = "";
     } else {
         $profilephoto = trim($_FILES["profilephoto"]["tmp_name"]);
@@ -71,9 +71,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Check input errors before inserting in database
     if (empty($useremail_err) && empty($username_err) && empty($usersurname_err) && empty($password_err) && empty($confirm_password_err) && empty($profilephoto_err)) {
         if (!empty(trim($_FILES["profilephoto"]["tmp_name"]))) {
-
             //file upload
-            $target_dir = "../uploads/";
+            $target_dir = "uploads/users/";
             //random file name
             $target_file = $target_dir . uniqid("profile-") . '.' . pathinfo($_FILES["profilephoto"]["name"], PATHINFO_EXTENSION);
             $uploadOk = 1;
@@ -158,7 +157,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if ($stmt = mysqli_prepare($link, $sql)) {
                 // Bind variables to the prepared statement as parameters
-                mysqli_stmt_bind_param($stmt, "sss", $param_userphoto, $param_useremail, $param_username, $param_usersurname);
+                mysqli_stmt_bind_param($stmt, "ssss", $param_userphoto, $param_useremail, $param_username, $param_usersurname);
 
                 // Set parameters
                 $param_userphoto = $profilephoto;
@@ -231,7 +230,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <h4 class="card-title"><?php echo ucfirst($user["username"] . ' ' . $user["usersurname"]); ?></h4>
                                 <p class="card-title-desc">Buradan profilinizdeki bilgilerinizi düzenleyebilir ve şifre işlemlerinizi yapabilirsiniz.</p>
 
-                                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" enctype="multipart/form-data" method="post">
 
                                     <input type="hidden" name="user_id" value="<?php echo $user["id"]; ?>">
 
@@ -244,7 +243,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     <?php } ?>
 
                                     <div class="mb-3 <?php echo (!empty($profilephoto_err)) ? 'has-error' : ''; ?>">
-                                        <label for="profilephoto" class="form-label">Profil Fotoğrafı</label>
+                                        <label for="profilephoto" class="form-label">Profil Fotoğrafı (500x500)</label>
                                         <input type="file" class="form-control" id="profilephoto" name="profilephoto" value="<?php echo $user["useremail"]; ?>">
                                         <span class="text-danger"><?php echo $profilephoto_err; ?></span>
                                     </div>

@@ -1,4 +1,5 @@
 <?php
+
 // Include config file
 require_once "layouts/config.php";
 

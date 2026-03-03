@@ -1,10 +1,11 @@
-<?php include 'layouts/session.php'; ?>
-<?php
+<?php 
+
+include 'layouts/session.php'; 
 // Include config file
 require_once "layouts/config.php";
 
 // Define variables and initialize with empty values
-$main_video_err = $about_title_err = $about_content_err = "";
+ $about_title_err = $about_content_err = "";
 
 //check if the last information is already in the database 
 $sql = "SELECT * FROM home_page ORDER BY id DESC LIMIT 1";
@@ -13,11 +14,11 @@ $stmt->execute();
 $home = $stmt->fetch(PDO::FETCH_ASSOC);
 if ($home) {
     $id = $home['id'];
-    $main_video = $home['main_video'];
+
     $about_title = $home['about_title'];
     $about_content = $home['about_content'];
 } else {
-    $main_video = $about_title = $about_content = "";
+    $about_title = $about_content = "";
 }
 
 
@@ -30,13 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if (!empty($id)) {
-        // Validate main video
-        $input_main_video = trim($_POST["main_video"]);
-        if (empty($input_main_video)) {
-            $main_video_err = "Video linki gereklidir.";
-        } else {
-            $main_video = $input_main_video;
-        }
+      
 
         // Validate about title
         $input_about_title = trim($_POST["about_title"]);
@@ -56,11 +51,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if (empty($csfr_err)) {
             // Prepare an update statement
-            $sql = "UPDATE home_page SET main_video = :main_video, about_title = :about_title, about_content = :about_content WHERE id = :id";
+            $sql = "UPDATE home_page SET about_title = :about_title, about_content = :about_content WHERE id = :id";
 
             if ($stmt = $pdo->prepare($sql)) {
                 // Bind variables to the prepared statement as parameters
-                $stmt->bindParam(":main_video", $main_video);
                 $stmt->bindParam(":about_title", $about_title);
                 $stmt->bindParam(":about_content", $about_content);
                 $stmt->bindParam(":id", $id);
@@ -75,13 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
     } else {
-        // Validate main video
-        $input_main_video = trim($_POST["main_video"]);
-        if (empty($input_main_video)) {
-            $main_video_err = "Video linki gereklidir.";
-        } else {
-            $main_video = $input_main_video;
-        }
+       
 
         // Validate about title
         $input_about_title = trim($_POST["about_title"]);
@@ -101,10 +89,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if (empty($csfr_err)) {
             // Prepare an insert statement
-            $sql = "INSERT INTO home_page (main_video, about_title, about_content) VALUES (:main_video, :about_title, :about_content)";
+            $sql = "INSERT INTO home_page ( about_title, about_content) VALUES ( :about_title, :about_content)";
             if ($stmt = $pdo->prepare($sql)) {
                 // Bind variables to the prepared statement as parameters
-                $stmt->bindParam(":main_video", $main_video, PDO::PARAM_STR);
                 $stmt->bindParam(":about_title", $about_title, PDO::PARAM_STR);
                 $stmt->bindParam(":about_content", $about_content, PDO::PARAM_STR);
 
@@ -183,22 +170,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                                         <input type="hidden" name="seo_id" value="<?php echo $id; ?>" />
                                         <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>" />
-                                        <div class="row">
-                                            <?php if (!empty($main_video)): ?>
-                                                <div class="mb-4">
-                                                    <iframe width="600" height="400"
-                                                        src="<?= youtubeToEmbed($main_video); ?>"
-                                                        frameborder="0"
-                                                        allowfullscreen>
-                                                    </iframe>
-                                                </div>
-                                            <?php endif; ?>
-                                            <div class="mb-3 <?php echo (!empty($main_video_err)) ? 'has-error' : ''; ?>">
-                                                <label for="main_video" class="form-label">Başlık Video</label>
-                                                <input type="text" class="form-control" id="main_video" name="main_video" placeholder="Video linkini giriniz" value="<?= $main_video ?>">
-                                                <span class="text-danger"><?php echo $main_video_err; ?></span>
-                                            </div>
-                                        </div>
+                                  
                                         <div class="mb-3 <?php echo (!empty($about_title_err)) ? 'has-error' : ''; ?>">
                                             <label for="about_title" class="form-label">Başlık</label>
                                             <input type="text" class="form-control" id="about_title" name="about_title" maxlength="255" placeholder="Başlığı giriniz" value="<?php echo $about_title; ?>">
@@ -220,34 +192,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                                         </div>
 
-                                        <div class="row">
-                                            <div class="col-6 mb-3">
-                                                <input data-repeater-create type="button" class="btn btn-success mt-3 mt-lg-0" value="Add" />
-                                            </div>
-                                            <div data-repeater-list="group-a">
-                                                <div data-repeater-item class="row">
-                                                    <div class="mb-3 col-lg-4">
-                                                        <label for="name">Name</label>
-                                                        <input type="text" id="name" name="untyped-input" class="form-control" placeholder="Enter Your Name" />
-                                                    </div>
-
-                                                    <div class="mb-3 col-lg-6">
-                                                        <label for="message">Message</label>
-                                                        <textarea id="message" class="form-control" placeholder="Enter Your Message"></textarea>
-                                                    </div>
-
-                                                    <div class="col-lg-2 mb-3 align-self-center">
-                                                        <div class="d-grid">
-                                                            <input data-repeater-delete type="button" class="btn btn-primary" value="Delete" />
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-
-                                        </div>
-
-
+                                       
 
 
                                     </div>

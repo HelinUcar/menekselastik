@@ -5,915 +5,216 @@ echo !defined("Secure-MENEKSELASTIK-2025@!") ? die("Hatalı sayfa girişi yaptı
 <meta name="description" content="<?= $seo_settings_arr['description'] ?>" />
 <meta property="og:title" content="<?= $seo_settings_arr['title'] ?>" />
 <meta property="og:description" content="<?= $seo_settings_arr['description'] ?>" />
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<style>
+    .b-about__img {
+        width: 100%;
+        max-width: 100%;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
 
+    .b-about__img img {
+        display: block;
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
 
+    .section-advantages-1.working-hours {
+        margin-top: -520px;
+        background-color: #f4f4f473;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+
+    }
+
+    .section-advantages-1.working-hours .b-advantages-1__info {
+        font-size: 15px;
+        color: black;
+    }
+
+    .section-advantages-1.working-hours .b-advantages-1__info a {
+        color: black;
+        text-decoration: none;
+    }
+
+    @media screen and (max-width: 767px) {
+        .section-advantages-1.working-hours .b-advantages-1 {
+            padding: 40px 5% 25px;
+        }
+    }
+</style>
 </head>
 
-<body class="custom-cursor">
-    <div class="custom-cursor__cursor"></div>
-    <div class="custom-cursor__cursor-two"></div>
-
-
-    <?php include("layouts/sidebar.php"); ?>
-
-    <div class="page-wrapper">
+<body>
+    <?php include("layouts/mobile-menu.php"); ?>
+    <div class="l-theme animated-css" data-header="sticky" data-header-top="200" data-canvas="container">
         <?php include("layouts/header.php"); ?>
-
-        <div class="stricky-header stricked-menu main-menu main-menu-four">
-            <div class="sticky-header__content"></div>
-            <!-- /.sticky-header__content -->
-        </div>
-        <!-- /.stricky-header -->
-
-        <!--Page Header Start-->
-        <section class="page-header">
-            <div class="page-header__wrap">
-                <div
-                    class="page-header__shape-1"
-                    style="
-              background-image: url(assets/images/shapes/page-header-shape-1.png);
-            "></div>
-                <div class="container">
-                    <div class="page-header__inner">
-                        <div class="page-header__shape-2"></div>
-                        <div class="page-header__shape-3"></div>
-                        <div class="page-header__shape-4"></div>
-                        <div class="page-header__img-1">
-                            <img
-                                src="assets/images/resources/page-header-img-1.png"
-                                alt="" />
-                            <div class="page-header__shape-5">
-                                <img
-                                    src="assets/images/shapes/page-header-shape-5.png"
-                                    alt="" />
-                            </div>
-                        </div>
-                        <h2>Hakkımızda</h2>
-                        <div class="thm-breadcrumb__box">
-                            <ul class="thm-breadcrumb list-unstyled">
-                                <li>Kurumsal</li>
-                                <li><span class="icon-angle-right"></span></li>
-                                <li>Hizmetlerimiz</li>
-                            </ul>
-                        </div>
+        <div class="main-slider main-slider-1">
+            <div class="slider-pro" id="main-slider" data-slider-width="100%" data-slider-height="700px" data-slider-arrows="true" data-slider-buttons="false">
+                <div class="sp-slides">
+                    <div class="sp-slide">
+                        <img class="sp-image" src="assets/media/banner/lastik.png" alt="slider" />
                     </div>
+                    <div class="sp-slide">
+                        <img class="sp-image" src="assets/media/banner/lastik-oteli.png" alt="slider" />
+                    </div>
+                    <div class="sp-slide">
+                        <img class="sp-image" src="assets/media/banner/balans.png" alt="slider" />
+                    </div>
+                    <div class="sp-slide">
+                        <img class="sp-image" src="assets/media/banner/sensor.png" alt="slider" />
+                    </div>
+                    <div class="sp-slide">
+                        <img class="sp-image" src="assets/media/banner/aku.png" alt="slider" />
+                    </div>
+                    <div class="sp-slide">
+                        <img class="sp-image" src="assets/media/banner/jant.png" alt="slider" />
+                    </div>
+                    <div class="sp-slide">
+                        <img class="sp-image" src="assets/media/banner/klima.png" alt="slider" />
+                    </div>
+
                 </div>
             </div>
-        </section>
-        <!--Page Header End-->
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 mb-5">
+                    <div class="section-advantages-1 working-hours">
+                        <section class="b-advantages-1">
+                            <h3 class="b-advantages-1__title">Çalışma Saatleri</h3>
+                            <div class="b-advantages-1__info">
+                                Pazartesi-Cumartesi 08:30-19:00
+                                <br>
+                                Pazar günleri kapalı!
+                            </div>
+                        </section>
 
-        <!--Counter One Start -->
-        <section class="counter-one counter-three">
-            <div class="container">
-                <div class="counter-one__inner">
-                    <ul class="list-unstyled counter-one__list">
-                        <li class="wow fadeInLeft" data-wow-delay="100ms">
-                            <div class="counter-one__single">
-                                <div class="counter-one__count-box">
-                                    <h3 class="odometer" data-count="600">00</h3>
-                                    <span>+</span>
-                                </div>
-                                <p class="counter-one__text">Team member</p>
+                        <section class="b-advantages-1">
+                            <h3 class="b-advantages-1__title">Adres</h3>
+                            <div class="b-advantages-1__info">SEMT, İvedik OSB, 1354. Cadde No:171, 06378 İvedik Osb/Yenimahalle/Ankara</div>
+                        </section>
+
+                        <section class="b-advantages-1">
+                            <h3 class="b-advantages-1__title">Bizi Arayabilirsiniz</h3>
+                            <div class="b-advantages-1__info"><a href="tel:<?= $seo_settings_arr['phone'] ?>"><?= $seo_settings_arr['phone'] ?> </a> <br>
+                                <a href="tel:<?= $seo_settings_arr['whatsapp'] ?>"><?= $seo_settings_arr['whatsapp'] ?></a></a>
                             </div>
-                        </li>
-                        <li class="wow fadeInLeft" data-wow-delay="200ms">
-                            <div class="counter-one__single">
-                                <div class="counter-one__count-box">
-                                    <h3 class="odometer" data-count="2">00</h3>
-                                    <span>k+</span>
-                                </div>
-                                <p class="counter-one__text">Service Complete</p>
-                            </div>
-                        </li>
-                        <li class="wow fadeInRight" data-wow-delay="300ms">
-                            <div class="counter-one__single">
-                                <div class="counter-one__count-box">
-                                    <h3 class="odometer" data-count="53">00</h3>
-                                    <span>+</span>
-                                </div>
-                                <p class="counter-one__text">Winning award</p>
-                            </div>
-                        </li>
-                        <li class="wow fadeInRight" data-wow-delay="400ms">
-                            <div class="counter-one__single">
-                                <div class="counter-one__count-box">
-                                    <h3 class="odometer" data-count="3">00</h3>
-                                    <span>k+</span>
-                                </div>
-                                <p class="counter-one__text">Client Review</p>
-                            </div>
-                        </li>
-                    </ul>
+                        </section>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="block-table block-table_xs">
+
+            <div class="block-table__cell col-md-6 bg-grey">
+                <div class="block-table__inner">
+                    <section class="b-services">
+                        <h2 class="ui-title-block-2">Menekşe Lastik</h2>
+                        <div class="ui-subtitle-block">Güvenli Yolculukların Başlangıç Noktası</div>
+                        <div class="ui-decor"></div>
+                        <div class="b-services__content">
+                            <p>Menekşe Lastik olarak, araçlarınızın yol güvenliğini ve performansını artırmak için profesyonel çözümler sunuyoruz. Lastik değişimi ve satışı, rot-balans ayarı, jant düzeltme ve boyama, lastik oteli, akü değişimi ve tamir-onarım gibi geniş hizmet yelpazemizle her zaman yanınızdayız.</p>
+                            <p>Müşteri memnuniyetini her şeyin önünde tutan yaklaşımımızla, aracınızın tüm ihtiyaçlarını uzman ekibimizle hızlı, kaliteli ve ekonomik şekilde karşılıyoruz. Kullandığımız teknolojiler ve deneyimimiz sayesinde, aracınızı en iyi şekilde yolculuğa hazırlıyoruz.</p>
+                            <p>Güvenilir servis, kaliteli hizmet ve profesyonel yaklaşım arıyorsanız, Menekşe Lastik her zaman yanınızda.</p>
+
+                        </div><a class="btn btn-dark" href="hizmetlerimiz">Hizmetlerimiz</a><a class="btn btn-primary" href="iletisim">Bize Ulaşın</a>
+                    </section>
+                    <!-- end .b-services-->
                 </div>
             </div>
-        </section>
-        <!--Counter One End -->
 
-        <!--About Five Start -->
-        <section class="about-five">
+            <div class="block-table__cell col-md-6">
+                <div class="block-table__inner">
+                    <img class="b-services__img" src="assets/media/general/menekse.png" alt="foto">
+                </div>
+            </div>
+        </div>
+        <!-- end .block-table-->
+
+
+
+
+        <div class="section-area" style="padding-bottom: 60px;">
             <div class="container">
                 <div class="row">
-                    <div class="col-xl-6">
-                        <div class="about-five__left">
-                            <div
-                                class="section-title text-left sec-title-animation animation-style2">
-                                <div class="section-title__tagline-box">
-                                    <span class="section-title__tagline">AboUt Us</span>
+                    <div class="col-md-12">
+                        <section class="section-type-1">
+                            <h2 class="ui-title-block-2">Sıkça Sorulan Sorular</h2>
+                            <div class="ui-subtitle-block">Zamanınızı önemsiyoruz. En sık sorulan soruları bu bölümde topladık. Daha fazla bilgi için bizimle iletişime geçmekten çekinmeyin.</div>
+                            <div class="ui-decor"></div>
+                            <div class="panel-group accordion accordion-1" id="accordion-1">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title"><a class="btn-collapse" data-toggle="collapse" data-parent="#accordion-1" href="#collapse-1"><i class="icon"></i>Lastik değişimi ne kadar sürüyor?</a></h3>
+                                    </div>
+                                    <div class="panel-collapse collapse in" id="collapse-1">
+                                        <div class="panel-body">
+                                            <p>Genellikle 20–30 dakika içerisinde lastik değişimi, balans ve rot ayarı yapılır. Ancak yoğun dönemlerde (özellikle kış lastiği geçiş zamanlarında) süre biraz daha uzayabilir.</p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <h2 class="section-title__title title-animation">
-                                    Fast and Reliable Car Care Your Car Our Priority
-                                </h2>
-                            </div>
-                            <p class="about-five__text-1">
-                                Car service is essential for maintaining the performance and
-                                <br />
-                                longevity of your vehicle. From oil changes
-                            </p>
-                            <ul class="list-unstyled about-five__points">
-                                <li>
-                                    <div class="icon">
-                                        <span class="icon-double-arrow-right"></span>
+                                <div class="panel">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title"><a class="btn-collapse collapsed" data-toggle="collapse" data-parent="#accordion-1" href="#collapse-2"><i class="icon"></i>Hangi markaların lastiklerini satıyorsunuz?</a></h3>
                                     </div>
-                                    <div class="text">
-                                        <p>Fast and Reliable Car Care Your Car Our Priority</p>
+                                    <div class="panel-collapse collapse" id="collapse-2">
+                                        <div class="panel-body">
+                                            <p>Bridgestone, Lassa ve Dayton markalarının güncel üretim lastiklerini satıyoruz.</p>
+                                        </div>
                                     </div>
-                                </li>
-                                <li>
-                                    <div class="icon">
-                                        <span class="icon-double-arrow-right"></span>
-                                    </div>
-                                    <div class="text">
-                                        <p>Free with Our Services Care for Your Car</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="icon">
-                                        <span class="icon-double-arrow-right"></span>
-                                    </div>
-                                    <div class="text">
-                                        <p>Top-notch Care for Your Vehicle Your Vehicle</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="icon">
-                                        <span class="icon-double-arrow-right"></span>
-                                    </div>
-                                    <div class="text">
-                                        <p>Expert Service for Your Vehicle Drive Stress</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="icon">
-                                        <span class="icon-double-arrow-right"></span>
-                                    </div>
-                                    <div class="text">
-                                        <p>Your Trusted Car Service Provider Keeping</p>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-xl-6">
-                        <div class="about-five__right">
-                            <div class="about-five__img-box">
-                                <div class="about-five__img">
-                                    <img
-                                        src="assets/images/resources/about-five-img-1.jpg"
-                                        alt="" />
                                 </div>
-                                <div class="about-five__shope-box">
-                                    <div
-                                        class="about-five__shope-box-bg-shape"
-                                        style="
-                        background-image: url(assets/images/shapes/about-five-shope-box-bg-shape.png);
-                      "></div>
-                                    <div class="about-five__shope-icon">
-                                        <span class="icon-auto-machanic-shop"></span>
+                                <div class="panel">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title"><a class="btn-collapse collapsed" data-toggle="collapse" data-parent="#accordion-1" href="#collapse-3"><i class="icon"></i>Lastik oteli hizmetiniz var mı?</a></h3>
                                     </div>
-                                    <h3 class="about-five__shope-title">Auto Mechanic Shop</h3>
-                                    <p class="about-five__shope-text">
-                                        Car service is essential for maintaining the performance
-                                        and longevity Car service is essential maintaining
-                                    </p>
+                                    <div class="panel-collapse collapse" id="collapse-3">
+                                        <div class="panel-body">
+                                            <p>Evet. Mevsimlik lastiklerinizi özel koşullarda saklıyor, kullanım ömrünü uzatıyoruz.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title"><a class="btn-collapse collapsed" data-toggle="collapse" data-parent="#accordion-1" href="#collapse-4"><i class="icon"></i>Lastiklerime garanti veriyor musunuz?</a></h3>
+                                    </div>
+                                    <div class="panel-collapse collapse" id="collapse-4">
+                                        <div class="panel-body">
+                                            <p>Ürünler üretici garantili, ayrıca işçiliğimiz de Menekşe Lastik garantisi altındadır.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title"><a class="btn-collapse collapsed" data-toggle="collapse" data-parent="#accordion-1" href="#collapse-5"><i class="icon"></i>Hangi ödeme yöntemlerini kabul ediyorsunuz?</a></h3>
+                                    </div>
+                                    <div class="panel-collapse collapse" id="collapse-5">
+                                        <div class="panel-body">
+                                            <p>Nakit, kredi kartı ve banka kartı ile ödeme alıyoruz.</p>
+                                        </div>
+                                    </div>
+                                </div><div class="panel">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title"><a class="btn-collapse collapsed" data-toggle="collapse" data-parent="#accordion-1" href="#collapse-6"><i class="icon"></i>Kış lastiği zorunluluğu ne zaman başlıyor?</a></h3>
+                                    </div>
+                                    <div class="panel-collapse collapse" id="collapse-6">
+                                        <div class="panel-body">
+                                            <p>Ticari araçlar için her yıl 1 Aralık–1 Nisan arası zorunlu, binek araçlar için güvenlik açısından tavsiye ediyoruz.</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                            <!-- end .accordion-->
+                        </section>
                     </div>
+                 
                 </div>
             </div>
-        </section>
-        <!--About Five End -->
-
-        <!--Brand One Start -->
-        <section class="brand-one">
-            <div class="container">
-                <div class="brand-one__inner">
-                    <div class="brand-one__carousel owl-theme owl-carousel">
-                        <!--Brand One Single Start-->
-                        <div class="item">
-                            <div class="brand-one__single">
-                                <div class="brand-one__img">
-                                    <img src="assets/images/brand/brand-1-1.png" alt="" />
-                                </div>
-                            </div>
-                        </div>
-                        <!--Brand One Single End-->
-                        <!--Brand One Single Start-->
-                        <div class="item">
-                            <div class="brand-one__single">
-                                <div class="brand-one__img">
-                                    <img src="assets/images/brand/brand-1-2.png" alt="" />
-                                </div>
-                            </div>
-                        </div>
-                        <!--Brand One Single End-->
-                        <!--Brand One Single Start-->
-                        <div class="item">
-                            <div class="brand-one__single">
-                                <div class="brand-one__img">
-                                    <img src="assets/images/brand/brand-1-3.png" alt="" />
-                                </div>
-                            </div>
-                        </div>
-                        <!--Brand One Single End-->
-                        <!--Brand One Single Start-->
-                        <div class="item">
-                            <div class="brand-one__single">
-                                <div class="brand-one__img">
-                                    <img src="assets/images/brand/brand-1-4.png" alt="" />
-                                </div>
-                            </div>
-                        </div>
-                        <!--Brand One Single End-->
-                        <!--Brand One Single Start-->
-                        <div class="item">
-                            <div class="brand-one__single">
-                                <div class="brand-one__img">
-                                    <img src="assets/images/brand/brand-1-5.png" alt="" />
-                                </div>
-                            </div>
-                        </div>
-                        <!--Brand One Single End-->
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!--Brand One End -->
-
-        <!--Services Two Start -->
-        <section class="services-two services-five">
-            <div class="container">
-                <div
-                    class="section-title text-center sec-title-animation animation-style1">
-                    <div class="section-title__tagline-box">
-                        <span class="section-title__tagline">Latest service</span>
-                    </div>
-                    <h2 class="section-title__title title-animation">
-                        The Car Doctor Service Easy Drive<br />
-                        Maintenance Center
-                    </h2>
-                </div>
-                <div class="row">
-                    <!--Services Two Single Start-->
-                    <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="100ms">
-                        <div class="services-two__single">
-                            <div class="services-two__icon">
-                                <span class="icon-gearshift"></span>
-                            </div>
-                            <h3 class="services-two__title">
-                                <a href="auto-pro-mechanic-shop.html">ProBuild Solutions</a>
-                            </h3>
-                            <p class="services-two__text">
-                                Car service is essential for maintaining a the performance and
-                                longevity service is essential for maintaining
-                            </p>
-                        </div>
-                        <div class="services-two__single">
-                            <div class="services-two__icon">
-                                <span class="icon-wheels"></span>
-                            </div>
-                            <h3 class="services-two__title">
-                                <a href="careful-car-service-station.html">Beyond Boundaries</a>
-                            </h3>
-                            <p class="services-two__text">
-                                Car service is essential for maintaining a the performance and
-                                longevity service is essential for maintaining
-                            </p>
-                        </div>
-                    </div>
-                    <!--Services Two Single End-->
-                    <!--Services Two Single Start-->
-                    <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="200ms">
-                        <div class="services-two__img">
-                            <img src="assets/images/team/team-two-img-1.png" alt="" />
-                        </div>
-                    </div>
-                    <!--Services Two Single End-->
-                    <!--Services Two Single Start-->
-                    <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="300ms">
-                        <div class="services-two__single">
-                            <div class="services-two__icon">
-                                <span class="icon-piston"></span>
-                            </div>
-                            <h3 class="services-two__title">
-                                <a href="smooth-ride-vehicle-care.html">Prime Construction</a>
-                            </h3>
-                            <p class="services-two__text">
-                                Car service is essential for maintaining a the performance and
-                                longevity service is essential for maintaining
-                            </p>
-                        </div>
-                        <div class="services-two__single">
-                            <div class="services-two__icon">
-                                <span class="icon-pressure"></span>
-                            </div>
-                            <h3 class="services-two__title">
-                                <a href="elite-auto-services.html">Elite Builders</a>
-                            </h3>
-                            <p class="services-two__text">
-                                Car service is essential for maintaining a the performance and
-                                longevity service is essential for maintaining
-                            </p>
-                        </div>
-                    </div>
-                    <!--Services Two Single End-->
-                </div>
-            </div>
-        </section>
-        <!--Services Two End -->
-
-        <!--Testimonial Two Start -->
-        <section class="testimonial-two">
-            <div class="testimonial-two__inner">
-                <div class="testimonial-two__shape-1"></div>
-                <div class="testimonial-two__shape-2">
-                    <img
-                        src="assets/images/shapes/testimonial-two-shape-2.png"
-                        alt="" />
-                </div>
-                <div class="testimonial-two__shape-3">
-                    <img
-                        src="assets/images/shapes/testimonial-two-shape-3.png"
-                        alt="" />
-                </div>
-                <div class="testimonial-two__shape-4">
-                    <img
-                        src="assets/images/shapes/testimonial-two-shape-4.png"
-                        alt="" />
-                </div>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xl-6 col-lg-6">
-                            <div class="testimonial-two__left">
-                                <h3 class="testimonial-two__title">Clients Testimonial</h3>
-                                <div class="testimonial-two__carousel owl-theme owl-carousel">
-                                    <!--Testimonial Two Single Start -->
-                                    <div class="item">
-                                        <div class="testimonial-two__single">
-                                            <div class="testimonial-two__quote">
-                                                <i class="fal fa-quote-right"></i>
-                                            </div>
-                                            <div class="testimonial-two__name-box">
-                                                <h4 class="testimonial-two__name">
-                                                    <a href="testimonials.html">Kathryn Murphy</a>
-                                                </h4>
-                                                <p class="testimonial-two__sub-title">Web Designer</p>
-                                            </div>
-                                            <p class="testimonial-two__text">
-                                                Car service is essential maintaining the performance
-                                                and longevity your vehicle. From oil changes and tire
-                                                rotations to engine diagnostics and brake repairs, car
-                                                service
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <!--Testimonial Two Single End -->
-                                    <!--Testimonial Two Single Start -->
-                                    <div class="item">
-                                        <div class="testimonial-two__single">
-                                            <div class="testimonial-two__quote">
-                                                <i class="fal fa-quote-right"></i>
-                                            </div>
-                                            <div class="testimonial-two__name-box">
-                                                <h4 class="testimonial-two__name">
-                                                    <a href="testimonials.html">Kathryn Murphy</a>
-                                                </h4>
-                                                <p class="testimonial-two__sub-title">Web Designer</p>
-                                            </div>
-                                            <p class="testimonial-two__text">
-                                                Car service is essential maintaining the performance
-                                                and longevity your vehicle. From oil changes and tire
-                                                rotations to engine diagnostics and brake repairs, car
-                                                service
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <!--Testimonial Two Single End -->
-                                    <!--Testimonial Two Single Start -->
-                                    <div class="item">
-                                        <div class="testimonial-two__single">
-                                            <div class="testimonial-two__quote">
-                                                <i class="fal fa-quote-right"></i>
-                                            </div>
-                                            <div class="testimonial-two__name-box">
-                                                <h4 class="testimonial-two__name">
-                                                    <a href="testimonials.html">Kathryn Murphy</a>
-                                                </h4>
-                                                <p class="testimonial-two__sub-title">Web Designer</p>
-                                            </div>
-                                            <p class="testimonial-two__text">
-                                                Car service is essential maintaining the performance
-                                                and longevity your vehicle. From oil changes and tire
-                                                rotations to engine diagnostics and brake repairs, car
-                                                service
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <!--Testimonial Two Single End -->
-                                    <!--Testimonial Two Single Start -->
-                                    <div class="item">
-                                        <div class="testimonial-two__single">
-                                            <div class="testimonial-two__quote">
-                                                <i class="fal fa-quote-right"></i>
-                                            </div>
-                                            <div class="testimonial-two__name-box">
-                                                <h4 class="testimonial-two__name">
-                                                    <a href="testimonials.html">Kathryn Murphy</a>
-                                                </h4>
-                                                <p class="testimonial-two__sub-title">Web Designer</p>
-                                            </div>
-                                            <p class="testimonial-two__text">
-                                                Car service is essential maintaining the performance
-                                                and longevity your vehicle. From oil changes and tire
-                                                rotations to engine diagnostics and brake repairs, car
-                                                service
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <!--Testimonial Two Single End -->
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-6 col-lg-6">
-                            <div class="testimonial-two__right">
-                                <div
-                                    class="testimonial-two__img wow fadeInUp"
-                                    data-wow-delay="100ms">
-                                    <img
-                                        src="assets/images/testimonial/testimonial-two-img-1.png"
-                                        alt="" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!--Testimonial Two End -->
-
-        <!--Pricing Three Start -->
-        <section class="pricing-three">
-            <div class="container">
-                <div
-                    class="section-title text-center sec-title-animation animation-style1">
-                    <div class="section-title__tagline-box">
-                        <span class="section-title__tagline">Pricing Plan</span>
-                    </div>
-                    <h2 class="section-title__title title-animation">
-                        Our Pricing Plan
-                    </h2>
-                </div>
-                <div class="pricing-three__main-tab-box tabs-box">
-                    <ul class="tab-buttons list-unstyled">
-                        <li data-tab="#monthly" class="tab-btn active-btn">
-                            <span>Monthly</span>
-                        </li>
-                        <li data-tab="#yearly" class="tab-btn"><span>Yearly</span></li>
-                    </ul>
-                    <div class="tabs-content">
-                        <!--tab-->
-                        <div class="tab active-tab" id="monthly">
-                            <div class="pricing-three__inner">
-                                <div class="row">
-                                    <!--Pricing Three Single Start -->
-                                    <div class="col-xl-4 col-lg-4">
-                                        <div class="pricing-three__single">
-                                            <div
-                                                class="pricing-three__single-bg-shape"
-                                                style="
-                            background-image: url(assets/images/shapes/pricing-three-single-bg-shape.png);
-                          "></div>
-                                            <div class="pricing-three__title-box">
-                                                <h2 class="pricing-three__title">Esay</h2>
-                                                <p class="pricing-three__text">
-                                                    Car service is essential for maintaining performance
-                                                    and longevity of vehicle. From oil changes
-                                                </p>
-                                            </div>
-                                            <div class="pricing-three__price-and-icon-box">
-                                                <div class="pricing-three__price-box">
-                                                    <h3 class="pricing-three__price">
-                                                        $10 <span>/month</span>
-                                                    </h3>
-                                                </div>
-                                            </div>
-                                            <ul class="list-unstyled pricing-three__points">
-                                                <li>
-                                                    <div class="icon">
-                                                        <span class="icon-double-arrow-right"></span>
-                                                    </div>
-                                                    <div class="text">
-                                                        <p>Mistakes To Avoid</p>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="icon">
-                                                        <span class="icon-double-arrow-right"></span>
-                                                    </div>
-                                                    <div class="text">
-                                                        <p>Winning for Your Startup</p>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="icon">
-                                                        <span class="icon-double-arrow-right"></span>
-                                                    </div>
-                                                    <div class="text">
-                                                        <p>Mistakes To Avoid</p>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="icon">
-                                                        <span class="icon-double-arrow-right"></span>
-                                                    </div>
-                                                    <div class="text">
-                                                        <p>Your Event, Your Memories</p>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                            <div class="pricing-three__btn-box">
-                                                <a href="pricing.html" class="thm-btn">Get Started Now<span
-                                                        class="icon-arrow-up-right"></span></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--Pricing Three Single Start -->
-                                    <!--Pricing Three Single Start -->
-                                    <div class="col-xl-4 col-lg-4">
-                                        <div class="pricing-three__single">
-                                            <div
-                                                class="pricing-three__single-bg-shape"
-                                                style="
-                            background-image: url(assets/images/shapes/pricing-three-single-bg-shape.png);
-                          "></div>
-                                            <div class="pricing-three__title-box">
-                                                <h2 class="pricing-three__title">Free</h2>
-                                                <p class="pricing-three__text">
-                                                    Car service is essential for maintaining performance
-                                                    and longevity of vehicle. From oil changes
-                                                </p>
-                                            </div>
-                                            <div class="pricing-three__price-and-icon-box">
-                                                <div class="pricing-three__price-box">
-                                                    <h3 class="pricing-three__price">
-                                                        $0 <span>/month</span>
-                                                    </h3>
-                                                </div>
-                                            </div>
-                                            <ul class="list-unstyled pricing-three__points">
-                                                <li>
-                                                    <div class="icon">
-                                                        <span class="icon-double-arrow-right"></span>
-                                                    </div>
-                                                    <div class="text">
-                                                        <p>Mistakes To Avoid</p>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="icon">
-                                                        <span class="icon-double-arrow-right"></span>
-                                                    </div>
-                                                    <div class="text">
-                                                        <p>Winning for Your Startup</p>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="icon">
-                                                        <span class="icon-double-arrow-right"></span>
-                                                    </div>
-                                                    <div class="text">
-                                                        <p>Mistakes To Avoid</p>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="icon">
-                                                        <span class="icon-double-arrow-right"></span>
-                                                    </div>
-                                                    <div class="text">
-                                                        <p>Your Event, Your Memories</p>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                            <div class="pricing-three__btn-box">
-                                                <a href="pricing.html" class="thm-btn">Get Started Now<span
-                                                        class="icon-arrow-up-right"></span></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--Pricing Three Single Start -->
-                                    <!--Pricing Three Single Start -->
-                                    <div class="col-xl-4 col-lg-4">
-                                        <div class="pricing-three__single">
-                                            <div
-                                                class="pricing-three__single-bg-shape"
-                                                style="
-                            background-image: url(assets/images/shapes/pricing-three-single-bg-shape.png);
-                          "></div>
-                                            <div class="pricing-three__title-box">
-                                                <h2 class="pricing-three__title">Free</h2>
-                                                <p class="pricing-three__text">
-                                                    Car service is essential for maintaining performance
-                                                    and longevity of vehicle. From oil changes
-                                                </p>
-                                            </div>
-                                            <div class="pricing-three__price-and-icon-box">
-                                                <div class="pricing-three__price-box">
-                                                    <h3 class="pricing-three__price">
-                                                        $30 <span>/month</span>
-                                                    </h3>
-                                                </div>
-                                            </div>
-                                            <ul class="list-unstyled pricing-three__points">
-                                                <li>
-                                                    <div class="icon">
-                                                        <span class="icon-double-arrow-right"></span>
-                                                    </div>
-                                                    <div class="text">
-                                                        <p>Mistakes To Avoid</p>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="icon">
-                                                        <span class="icon-double-arrow-right"></span>
-                                                    </div>
-                                                    <div class="text">
-                                                        <p>Winning for Your Startup</p>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="icon">
-                                                        <span class="icon-double-arrow-right"></span>
-                                                    </div>
-                                                    <div class="text">
-                                                        <p>Mistakes To Avoid</p>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="icon">
-                                                        <span class="icon-double-arrow-right"></span>
-                                                    </div>
-                                                    <div class="text">
-                                                        <p>Your Event, Your Memories</p>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                            <div class="pricing-three__btn-box">
-                                                <a href="pricing.html" class="thm-btn">Get Started Now<span
-                                                        class="icon-arrow-up-right"></span></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--Pricing Three Single Start -->
-                                </div>
-                            </div>
-                        </div>
-                        <!--tab-->
-                        <div class="tab" id="yearly">
-                            <div class="pricing-three__inner">
-                                <div class="row">
-                                    <!--Pricing Three Single Start -->
-                                    <div class="col-xl-4 col-lg-4">
-                                        <div class="pricing-three__single">
-                                            <div
-                                                class="pricing-three__single-bg-shape"
-                                                style="
-                            background-image: url(assets/images/shapes/pricing-three-single-bg-shape.png);
-                          "></div>
-                                            <div class="pricing-three__title-box">
-                                                <h2 class="pricing-three__title">Esay</h2>
-                                                <p class="pricing-three__text">
-                                                    Car service is essential for maintaining performance
-                                                    and longevity of vehicle. From oil changes
-                                                </p>
-                                            </div>
-                                            <div class="pricing-three__price-and-icon-box">
-                                                <div class="pricing-three__price-box">
-                                                    <h3 class="pricing-three__price">
-                                                        $10 <span>/month</span>
-                                                    </h3>
-                                                </div>
-                                            </div>
-                                            <ul class="list-unstyled pricing-three__points">
-                                                <li>
-                                                    <div class="icon">
-                                                        <span class="icon-double-arrow-right"></span>
-                                                    </div>
-                                                    <div class="text">
-                                                        <p>Mistakes To Avoid</p>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="icon">
-                                                        <span class="icon-double-arrow-right"></span>
-                                                    </div>
-                                                    <div class="text">
-                                                        <p>Winning for Your Startup</p>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="icon">
-                                                        <span class="icon-double-arrow-right"></span>
-                                                    </div>
-                                                    <div class="text">
-                                                        <p>Mistakes To Avoid</p>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="icon">
-                                                        <span class="icon-double-arrow-right"></span>
-                                                    </div>
-                                                    <div class="text">
-                                                        <p>Your Event, Your Memories</p>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                            <div class="pricing-three__btn-box">
-                                                <a href="pricing.html" class="thm-btn">Get Started Now<span
-                                                        class="icon-arrow-up-right"></span></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--Pricing Three Single Start -->
-                                    <!--Pricing Three Single Start -->
-                                    <div class="col-xl-4 col-lg-4">
-                                        <div class="pricing-three__single">
-                                            <div
-                                                class="pricing-three__single-bg-shape"
-                                                style="
-                            background-image: url(assets/images/shapes/pricing-three-single-bg-shape.png);
-                          "></div>
-                                            <div class="pricing-three__title-box">
-                                                <h2 class="pricing-three__title">Free</h2>
-                                                <p class="pricing-three__text">
-                                                    Car service is essential for maintaining performance
-                                                    and longevity of vehicle. From oil changes
-                                                </p>
-                                            </div>
-                                            <div class="pricing-three__price-and-icon-box">
-                                                <div class="pricing-three__price-box">
-                                                    <h3 class="pricing-three__price">
-                                                        $0 <span>/month</span>
-                                                    </h3>
-                                                </div>
-                                            </div>
-                                            <ul class="list-unstyled pricing-three__points">
-                                                <li>
-                                                    <div class="icon">
-                                                        <span class="icon-double-arrow-right"></span>
-                                                    </div>
-                                                    <div class="text">
-                                                        <p>Mistakes To Avoid</p>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="icon">
-                                                        <span class="icon-double-arrow-right"></span>
-                                                    </div>
-                                                    <div class="text">
-                                                        <p>Winning for Your Startup</p>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="icon">
-                                                        <span class="icon-double-arrow-right"></span>
-                                                    </div>
-                                                    <div class="text">
-                                                        <p>Mistakes To Avoid</p>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="icon">
-                                                        <span class="icon-double-arrow-right"></span>
-                                                    </div>
-                                                    <div class="text">
-                                                        <p>Your Event, Your Memories</p>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                            <div class="pricing-three__btn-box">
-                                                <a href="pricing.html" class="thm-btn">Get Started Now<span
-                                                        class="icon-arrow-up-right"></span></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--Pricing Three Single Start -->
-                                    <!--Pricing Three Single Start -->
-                                    <div class="col-xl-4 col-lg-4">
-                                        <div class="pricing-three__single">
-                                            <div
-                                                class="pricing-three__single-bg-shape"
-                                                style="
-                            background-image: url(assets/images/shapes/pricing-three-single-bg-shape.png);
-                          "></div>
-                                            <div class="pricing-three__title-box">
-                                                <h2 class="pricing-three__title">Free</h2>
-                                                <p class="pricing-three__text">
-                                                    Car service is essential for maintaining performance
-                                                    and longevity of vehicle. From oil changes
-                                                </p>
-                                            </div>
-                                            <div class="pricing-three__price-and-icon-box">
-                                                <div class="pricing-three__price-box">
-                                                    <h3 class="pricing-three__price">
-                                                        $30 <span>/month</span>
-                                                    </h3>
-                                                </div>
-                                            </div>
-                                            <ul class="list-unstyled pricing-three__points">
-                                                <li>
-                                                    <div class="icon">
-                                                        <span class="icon-double-arrow-right"></span>
-                                                    </div>
-                                                    <div class="text">
-                                                        <p>Mistakes To Avoid</p>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="icon">
-                                                        <span class="icon-double-arrow-right"></span>
-                                                    </div>
-                                                    <div class="text">
-                                                        <p>Winning for Your Startup</p>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="icon">
-                                                        <span class="icon-double-arrow-right"></span>
-                                                    </div>
-                                                    <div class="text">
-                                                        <p>Mistakes To Avoid</p>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="icon">
-                                                        <span class="icon-double-arrow-right"></span>
-                                                    </div>
-                                                    <div class="text">
-                                                        <p>Your Event, Your Memories</p>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                            <div class="pricing-three__btn-box">
-                                                <a href="pricing.html" class="thm-btn">Get Started Now<span
-                                                        class="icon-arrow-up-right"></span></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--Pricing Three Single Start -->
-                                </div>
-                            </div>
-                        </div>
-                        <!--tab-->
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!--Pricing Three End -->
-
-
-    </div>
-    <!-- /.page-wrapper -->
-
-    <?php include('layouts/mobile.php'); ?>
-
-
-    <div class="search-popup">
-        <div class="search-popup__overlay search-toggler"></div>
-        <!-- /.search-popup__overlay -->
-        <div class="search-popup__content">
-            <form action="#">
-                <label for="search" class="sr-only">search here</label><!-- /.sr-only -->
-                <input type="text" id="search" placeholder="Search Here..." />
-                <button type="submit" aria-label="search submit" class="thm-btn">
-                    <i class="fas fa-search"></i>
-                </button>
-            </form>
         </div>
-        <!-- /.search-popup__content -->
+
     </div>
-    <!-- /.search-popup -->
-
-
-</body>

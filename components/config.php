@@ -58,6 +58,78 @@ function turkceTarih($tarih)
     return $parcalar[2] . ' ' . $aylar[$parcalar[1]] . ' ' . $parcalar[0];
 }
 
+function turkceTarihParcala($tarih)
+{
+    // Türkçe ay isimleri dizisi
+    $aylar = array(
+        '01' => 'Oca',
+        '02' => 'Şub',
+        '03' => 'Mar',
+        '04' => 'Nis',
+        '05' => 'May',
+        '06' => 'Haz',
+        '07' => 'Tem',
+        '08' => 'Ağu',
+        '09' => 'Eyl',
+        '10' => 'Eki',
+        '11' => 'Kas',
+        '12' => 'Ara'
+    );
+
+    if (empty($tarih)) return [];
+
+    $parca = explode(' ', $tarih);
+    $tarihKismi = $parca[0];
+
+    $parcalar = explode('-', $tarihKismi);
+    if (count($parcalar) !== 3) return [];
+
+    $yil = $parcalar[0];
+    $ay  = $parcalar[1];
+    $gun = $parcalar[2];
+
+    $ayYazi = isset($aylar[$ay]) ? $aylar[$ay] : $ay;
+
+    return [
+        'gun' => ltrim($gun, '0'), // 03 → 3
+        'ay' => $ayYazi,
+        'yil' => $yil
+    ];
+}
+
+function gecerlilikMetni($tarih)
+{
+    $aylar = array(
+        '01' => 'OCAK',
+        '02' => 'ŞUBAT',
+        '03' => 'MART',
+        '04' => 'NİSAN',
+        '05' => 'MAYIS',
+        '06' => 'HAZİRAN',
+        '07' => 'TEMMUZ',
+        '08' => 'AĞUSTOS',
+        '09' => 'EYLÜL',
+        '10' => 'EKİM',
+        '11' => 'KASIM',
+        '12' => 'ARALIK'
+    );
+
+    // Eki belirlemek için 'E' alacak aylar
+    $e_ek_alan_aylar = ['EYLÜL', 'EKİM'];
+
+    $parca = explode('-', explode(' ', $tarih)[0]);
+    if (count($parca) !== 3) return '';
+
+    $gun = ltrim($parca[2], '0');
+    $ay  = $aylar[$parca[1]] ?? $parca[1];
+
+    $ek = in_array($ay, $e_ek_alan_aylar) ? "'E" : "'A";
+
+    return strtoupper("{$gun} {$ay}{$ek} KADAR GEÇERLİ");
+}
+
+
+
 
 
 function kisalt($html, $word_limit)
@@ -97,16 +169,3 @@ $seo_settings = $get_seo_settings->fetch(PDO::FETCH_ASSOC);
 foreach ($seo_settings as $key => $value) {
     $seo_settings_arr[$key] = $value;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-?>

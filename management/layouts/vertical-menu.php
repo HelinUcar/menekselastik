@@ -24,7 +24,7 @@
 
             <div class="dropdown d-inline-block">
                 <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img class="rounded-circle header-profile-user" src="assets/images/users/no-user.png" alt="Header Avatar">
+                    <img class="rounded-circle header-profile-user" src="<?= $_SESSION['userphoto'] ?>" alt="Header Avatar">
                     <span class="d-none d-xl-inline-block ms-1" key="t-henry"><?php echo ucfirst($_SESSION["username"] . ' ' . $_SESSION["usersurname"]); ?></span>
                     <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                 </button>
@@ -91,11 +91,22 @@
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="bx bx-news"></i>
-                        <span key="t-news">Haberler</span>
+                        <span key="t-services">Hizmetler</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="news-add.php" key="t-news-add">Haber Ekle</a></li>
-                        <li><a href="news.php" key="t-news">Haberler</a></li>
+                        <li><a href="services-add.php" key="t-services-add">Hizmet Ekle</a></li>
+                        <li><a href="services.php" key="t-services">Hizmet Listesi</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="bx bx-news"></i>
+                        <span key="t-news">Kampanyalar</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="news-add.php" key="t-news-add">Kampanya Ekle</a></li>
+                        <li><a href="news.php" key="t-news">Kampanya Listesi</a></li>
                     </ul>
                 </li>
 
@@ -117,18 +128,18 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="rims-add.php" key="t-rims-add">Jant Ekle</a></li>
-                        <li><a href="rims.php" key="t-rims">Jantlar</a></li>
+                        <li><a href="rims.php" key="t-rims">Jant Listesi</a></li>
                     </ul>
                 </li>
 
-                <li>
+                <!-- <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="mdi mdi-car-battery"></i>
                         <span key="t-batteries">Aküler</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="batteries-add.php" key="t-batteries-add">Akü Ekle</a></li>
-                        <li><a href="batteries.php" key="t-batteries">Aküler</a></li>
+                        <li><a href="batteries.php" key="t-batteries">Akü Listesi</a></li>
                     </ul>
                 </li>
                 <li>
@@ -138,18 +149,18 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="sensors-add.php" key="t-sensors-add">Sensör Ekle</a></li>
-                        <li><a href="sensors.php" key="t-sensors">Sensörler</a></li>
+                        <li><a href="sensors.php" key="t-sensors">Sensör Listesi</a></li>
                     </ul>
-                </li>
+                </li> -->
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="mdi mdi-newspaper-variant-multiple"></i>
-                        <span key="t-ads">İlanlar</span>
+                        <span key="t-ads">İlanlar(eklenecek)</span>
                     </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="ads-add.php" key="t-ads-add">İlan Ekle</a></li>
-                        <li><a href="ads.php" key="t-ads">İlanlar</a></li>
-                    </ul>
+                    <!-- <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="ads-add.php" key="t-ads-add">İlan Ekle (eklenecek)</a></li>
+                        <li><a href="ads.php" key="t-ads">İlan Listesi</a></li>
+                    </ul> -->
                 </li>
 
 
@@ -157,41 +168,36 @@
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="bx bx-hotel"></i>
-                        <span key="t-customer">Otel Müşterileri</span>
+                        <span key="t-customer">Otel Müşterileri (eklenecek)</span>
                     </a>
-                    <ul class="sub-menu" aria-expanded="false">
+                    <!-- <ul class="sub-menu" aria-expanded="false">
                         <li><a href="customer-add.php" key="t-customer-add">Müşteri Ekle</a></li>
-                        <li><a href="customer.php" key="t-customer">Müşteriler</a></li>
-                    </ul>
+                        <li><a href="customers.php" key="t-customer">Müşteri Listesi</a></li>
+                    </ul> -->
                 </li>
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="bx bx-hotel"></i>
-                        <span key="t-room">Otel Odaları</span>
+                        <span key="t-room">Otel Odaları (eklenecek)</span>
                     </a>
-                    <ul class="sub-menu" aria-expanded="false">
+                    <!-- <ul class="sub-menu" aria-expanded="false">
                         <li><a href="room-add.php" key="t-room-add">Oda Ekle</a></li>
-                        <li><a href="room.php" key="t-room">Odalar</a></li>
-                    </ul>
+                        <li><a href="rooms.php" key="t-room">Oda Listesi</a></li>
+                    </ul> -->
                 </li>
 
-                <li class="menu-title" key="t-pages">Servis ve Lastik Takip</li>
+                <!-- <li class="menu-title" key="t-pages">Servis ve Lastik Takip</li>
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="bx bx-car"></i>
                         <span key="t-service">Servis</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="service-add.php" key="t-service-add">Servis Ekle</a></li>
-                        <li><a href="services.php" key="t-service">Servisler</a></li>
+                        <li><a href="process-add.php" key="t-service-add">Servis Ekle</a></li>
+                        <li><a href="processes.php" key="t-service">Servis Listesi</a></li>
                     </ul>
-                </li>
-
-
-
-
-
+                </li> -->
 
 
                 <li class="menu-title" key="t-pages"></li>

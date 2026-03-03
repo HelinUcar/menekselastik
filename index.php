@@ -9,9 +9,20 @@ ob_start();
 session_start();
 
 
+// URL'den aktif sayfayı belirle
+$currentPage = 'anasayfa';
+
+if (!empty($_GET['p'])) {
+    // sadece ilk segmenti al (lastik/blizzak → lastik)
+    $segments = explode('/', $_GET['p']);
+    $currentPage = $segments[0];
+}
+
+
+
+
 // Tarayıcı önbelleğini devre dışı bırakmak için bu başlıkları ekleyin
 header("Cache-Control: no-cache, no-store, must-revalidate");
-
 header("Access-Control-Allow-Origin: *");
 header("Pragma: no-cache");
 header("Expires: 0");
@@ -19,6 +30,7 @@ header("Expires: 0");
 <!DOCTYPE html>
 <html lang="tr">
 
+<base href="http://localhost/menekselastik2/">
 
 <head>
     <meta charset="UTF-8">
@@ -46,58 +58,19 @@ header("Expires: 0");
 
     <!-- Main style sheet -->
     <!-- fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet" />
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap"
-        rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/master.css" />
 
 
- 
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="assets/css/animate.min.css" />
-    <link rel="stylesheet" href="assets/css/custom-animate.css" />
-    <link rel="stylesheet" href="assets/css/swiper.min.css" />
-    <link rel="stylesheet" href="assets/css/font-awesome-all.css" />
-    <link rel="stylesheet" href="assets/css/jarallax.css" />
-    <link rel="stylesheet" href="assets/css/jquery.magnific-popup.css" />
-    <link rel="stylesheet" href="assets/css/flaticon.css" />
-    <link rel="stylesheet" href="assets/css/owl.carousel.min.css" />
-    <link rel="stylesheet" href="assets/css/odometer.min.css" />
-    <link rel="stylesheet" href="assets/css/owl.theme.default.min.css" />
-    <link rel="stylesheet" href="assets/css/jquery-ui.css" />
-    <link rel="stylesheet" href="assets/css/aos.css" />
+    <link href="assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
 
-    <link rel="stylesheet" href="assets/css/module-css/slider.css" />
-    <link rel="stylesheet" href="assets/css/module-css/footer.css" />
-    <link rel="stylesheet" href="assets/css/module-css/counter.css" />
-    <link rel="stylesheet" href="assets/css/module-css/services.css" />
-    <link rel="stylesheet" href="assets/css/module-css/about.css" />
-    <link rel="stylesheet" href="assets/css/module-css/brand.css" />
-    <link rel="stylesheet" href="assets/css/module-css/gallery.css" />
-    <link rel="stylesheet" href="assets/css/module-css/faq.css" />
-    <link rel="stylesheet" href="assets/css/module-css/testimonial.css" />
-    <link rel="stylesheet" href="assets/css/module-css/team.css" />
-    <link rel="stylesheet" href="assets/css/module-css/contact.css" />
-    <link rel="stylesheet" href="assets/css/module-css/pricing.css" />
-    <link rel="stylesheet" href="assets/css/module-css/blog.css" />
-    <link rel="stylesheet" href="assets/css/module-css/sliding-text.css" />
-    <link rel="stylesheet" href="assets/css/module-css/cta.css" />
-    <link rel="stylesheet" href="assets/css/module-css/feature.css" />
-    <link rel="stylesheet" href="assets/css/module-css/banner.css" />
-    <link rel="stylesheet" href="assets/css/module-css/page-header.css" />
+    <link href="assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
 
 
-    <!-- template styles -->
-    <link rel="stylesheet" href="assets/css/style.css" />
-    <link rel="stylesheet" href="assets/css/responsive.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.6.172/pdf.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.6.172/pdf.worker.min.js"></script>
-    
+
+
+
+
     <?php
     if ($_GET && !empty($_GET["p"])) {
         $p = htmlspecialchars(trim($_GET["p"] . ".php"));
@@ -115,37 +88,68 @@ header("Expires: 0");
 
 
     <?php include 'layouts/footer.php'; ?>
-    <a href="#" data-target="html" class="scroll-to-target scroll-to-top">
-        <span class="scroll-to-top__wrapper"><span class="scroll-to-top__inner"></span></span>
-        <span class="scroll-to-top__text"> Yukarı Dön</span>
-    </a>
 
 
- 
-    <script src="assets/js/jquery-3.6.0.min.js"></script>
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/jarallax.min.js"></script>
-    <script src="assets/js/jquery.ajaxchimp.min.js"></script>
-    <script src="assets/js/jquery.appear.min.js"></script>
-    <script src="assets/js/swiper.min.js"></script>
-    <script src="assets/js/jquery.circle-progress.min.js"></script>
-    <script src="assets/js/jquery.magnific-popup.min.js"></script>
-    <script src="assets/js/isotope.js"></script>
-    <script src="assets/js/jquery.validate.min.js"></script>
-    <script src="assets/js/wNumb.min.js"></script>
-    <script src="assets/js/wow.js"></script>
-    <script src="assets/js/owl.carousel.min.js"></script>
-    <script src="assets/js/jquery-ui.js"></script>
-    <script src="assets/js/odometer.min.js"></script>
-    <script src="assets/js/jquery-sidebar-content.js"></script>
-    <script src="assets/js/marquee.min.js"></script>
-    <script src="assets/js/gsap/gsap.js"></script>
-    <script src="assets/js/gsap/ScrollTrigger.js"></script>
-    <script src="assets/js/gsap/SplitText.js"></script>
-    <script src="assets/js/aos.js"></script>
+    <!-- ++++++++++++-->
+    <!-- MAIN SCRIPTS-->
+    <!-- ++++++++++++-->
+    <script src="assets/libs/jquery-1.12.4.min.js"></script>
+    <script src="assets/libs/jquery-migrate-1.2.1.js"></script>
+    <!-- Bootstrap-->
+    <script src="assets/libs/bootstrap/bootstrap.min.js"></script>
+    <!-- User customization-->
+    <script src="assets/js/custom.js"></script>
+    <!-- Headers scripts-->
+    <script src="assets/plugins/headers/slidebar.js"></script>
+    <script src="assets/plugins/headers/header.js"></script>
+    <!-- Color scheme-->
+    <script src="assets/plugins/switcher/js/dmss.js"></script>
+    <!-- Select customization & Color scheme-->
+    <script src="assets/plugins/bootstrap-select/js/bootstrap-select.min.js"></script>
+    <!-- Slider-->
+    <script src="assets/plugins/owl-carousel/owl.carousel.min.js"></script>
+    <!-- Pop-up window-->
+    <script src="assets/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+    <!-- Mail scripts-->
+    <script src="assets/plugins/jqBootstrapValidation.js"></script>
+    
+    <!-- Filter and sorting images-->
+    <script src="assets/plugins/isotope/isotope.pkgd.min.js"></script>
+    <script src="assets/plugins/isotope/imagesLoaded.js"></script>
+    <!-- Progress numbers-->
+    <script src="assets/plugins/rendro-easy-pie-chart/jquery.easypiechart.min.js"></script>
+    <script src="assets/plugins/rendro-easy-pie-chart/waypoints.min.js"></script>
+    <!-- NoUiSlider-->
+    <script src="assets/plugins/noUiSlider/nouislider.min.js"></script>
+    <script src="assets/plugins/noUiSlider/wNumb.js"></script>
+    <!-- Animations-->
+    <script src="assets/plugins/scrollreveal/scrollreveal.min.js"></script>
+    <!-- Main slider-->
+    <script src="assets/plugins/slider-pro/jquery.sliderPro.min.js"></script>
+    <!-- Datepicker-->
+    <script src="assets/plugins/datepicker/jquery.datetimepicker.js"></script>
 
-    <!-- template js -->
-    <script src="assets/js/script.js"></script>
+
+    <!-- Required datatable js -->
+    <script src="assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <!-- Buttons examples -->
+    <script src="assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="assets/libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
+    <script src="assets/libs/jszip/jszip.min.js"></script>
+    <script src="assets/libs/pdfmake/build/pdfmake.min.js"></script>
+    <script src="assets/libs/pdfmake/build/vfs_fonts.js"></script>
+    <script src="assets/libs/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="assets/libs/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="assets/libs/datatables.net-buttons/js/buttons.colVis.min.js"></script>
+
+    <!-- Responsive examples -->
+    <script src="assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
+
+    <!-- Datatable init js -->
+    <script src="assets/js/pages/datatables.init.js"></script>
+
 
     </body>
 
